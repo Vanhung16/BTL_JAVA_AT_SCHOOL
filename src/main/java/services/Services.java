@@ -1,21 +1,17 @@
-package com.mycompany.quanlydangkymonhoc.connectDB;
+package services;
 
-import com.mysql.cj.jdbc.MysqlDataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+
+import com.mycompany.quanlydangkymonhoc.connectDB.connectDataBase;
+import com.mysql.cj.jdbc.MysqlDataSource;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-/**
- *
- * @author Admin
- */
-public class connectDataBase {
+public class Services {
 
     private static String host = "localhost";
     private static String username = "root";
@@ -38,5 +34,29 @@ public class connectDataBase {
             Logger.getLogger("Get Connection " + connectDataBase.class.getName()).log(Level.SEVERE, null, ex);
         }
         return cnn;
+    }
+
+    public static ResultSet get(String sql) {
+
+        PreparedStatement st;
+        ResultSet rs = null;
+
+        try {
+            st = connectDataBase.getConnection().prepareStatement(sql);
+            rs = st.executeQuery();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return rs;
+    }
+
+    public static void post(String sql) {
+        PreparedStatement st;
+        try {
+            st = connectDataBase.getConnection().prepareStatement(sql);
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
     }
 }

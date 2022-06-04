@@ -4,29 +4,29 @@
  */
 package TableView;
 
-import models.*;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
+import models.Khoa;
 
 /**
  *
- * @author VanHung
+ * @author XuanHoang
  */
-public class TableMonHoc extends AbstractTableModel {
+public class TableKhoa extends AbstractTableModel {
 
-    private String heading[] = {"Mã môn", "Tên Môn","Số tín chỉ", "Nhóm môn"};
+    private String heading[] = {"Mã khoa", "Tên khoa"};
 
-    private Class classess[] = {String.class, String.class,int.class, String.class};
+    private Class classess[] = {String.class, String.class};
 
-    ArrayList<MonHoc> dsMonHoc = new ArrayList<>();
+    ArrayList<Khoa> dsKhoa = new ArrayList<>();
 
-    public TableMonHoc (ArrayList<MonHoc> MonHoc) {
-        dsMonHoc = MonHoc;
+    public TableKhoa(ArrayList<Khoa> Khoa) {
+        dsKhoa = Khoa;
     }
 
     @Override
     public int getRowCount() {
-        return dsMonHoc.size();
+        return dsKhoa.size();
     }
 
     @Override
@@ -38,20 +38,14 @@ public class TableMonHoc extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0:
-               return dsMonHoc.get(rowIndex).getId();
-
+                return dsKhoa.get(rowIndex).getId();
             case 1:
-                return dsMonHoc.get(rowIndex).getName();
-            case 2:
-                return dsMonHoc.get(rowIndex).getSotc();
-            case 3:
-                return dsMonHoc.get(rowIndex).getnameNhom();
-
+                return dsKhoa.get(rowIndex).getName();
             default:
                 return null;
         }
     }
-
+    
     public Class getColumnClass(int columnIndex) {
         return classess[columnIndex];
     }

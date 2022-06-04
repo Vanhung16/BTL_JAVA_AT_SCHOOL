@@ -15,6 +15,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import models.MonHoc;
+import utilis.BackHomeAdmin;
+import utilis.CenterScreen;
 
 /**
  *
@@ -27,11 +29,13 @@ public class QLMHScreen extends javax.swing.JFrame {
      */
     ArrayList<MonHoc> dsMonHoc = new ArrayList<>();
     int dongchon = -1;
+
     public QLMHScreen() {
         initComponents();
         LoadTableMonHoc();
     }
-    public void LoadTableMonHoc(){
+
+    public void LoadTableMonHoc() {
         tableMonHoc.setModel(new TableMonHoc(dsMonHoc));
     }
 
@@ -49,7 +53,7 @@ public class QLMHScreen extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableMonHoc = new javax.swing.JTable();
         RemoveMH = new javax.swing.JButton();
-        closeQLMH = new javax.swing.JButton();
+        btnBackHome = new javax.swing.JButton();
         clickCTMH = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,6 +66,7 @@ public class QLMHScreen extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("Danh sách môn học");
 
+        tableMonHoc.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         tableMonHoc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -75,7 +80,7 @@ public class QLMHScreen extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableMonHoc);
 
-        RemoveMH.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        RemoveMH.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         RemoveMH.setText("Xóa");
         RemoveMH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,15 +88,15 @@ public class QLMHScreen extends javax.swing.JFrame {
             }
         });
 
-        closeQLMH.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        closeQLMH.setText("Đóng");
-        closeQLMH.addActionListener(new java.awt.event.ActionListener() {
+        btnBackHome.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnBackHome.setText("Quay lại");
+        btnBackHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closeQLMHActionPerformed(evt);
+                btnBackHomeActionPerformed(evt);
             }
         });
 
-        clickCTMH.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        clickCTMH.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         clickCTMH.setText("Xem chi tiết");
         clickCTMH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,8 +115,8 @@ public class QLMHScreen extends javax.swing.JFrame {
                         .addComponent(RemoveMH, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(230, 230, 230)
                         .addComponent(clickCTMH)
-                        .addGap(235, 235, 235)
-                        .addComponent(closeQLMH, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(217, 217, 217)
+                        .addComponent(btnBackHome, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel1)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -127,7 +132,7 @@ public class QLMHScreen extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(RemoveMH)
-                    .addComponent(closeQLMH)
+                    .addComponent(btnBackHome)
                     .addComponent(clickCTMH))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
@@ -139,7 +144,7 @@ public class QLMHScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,24 +165,24 @@ public class QLMHScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_clickCTMHActionPerformed
 
-    private void closeQLMHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeQLMHActionPerformed
+    private void btnBackHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackHomeActionPerformed
         // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_closeQLMHActionPerformed
+        BackHomeAdmin.excute(this);
+    }//GEN-LAST:event_btnBackHomeActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        
+
         PreparedStatement st;
         ResultSet rs;
-        String query = "SELECT  mon_hoc.id,mon_hoc.name,mon_hoc.so_tin_chi,nhom_mon.name as ten_nhom FROM `mon_hoc` INNER JOIN nhom_mon ON mon_hoc.id_nhom = nhom_mon.id\n" +
-"";
+        String query = "SELECT  mon_hoc.id,mon_hoc.name,mon_hoc.so_tin_chi,nhom_mon.name as ten_nhom FROM `mon_hoc` INNER JOIN nhom_mon ON mon_hoc.id_nhom = nhom_mon.id\n"
+                + "";
         try {
             st = connectDataBase.getConnection().prepareStatement(query);
             rs = st.executeQuery();
             MonHoc x = null;
-           
-            while(rs.next()){
+
+            while (rs.next()) {
                 x = new MonHoc(rs.getInt("mon_hoc.id"), rs.getString("mon_hoc.name"), rs.getInt("mon_hoc.so_tin_chi"), rs.getString("ten_nhom"));
                 dsMonHoc.add(x);
             }
@@ -186,8 +191,8 @@ public class QLMHScreen extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(QLMHScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
+
     }//GEN-LAST:event_formWindowOpened
 
     /**
@@ -220,15 +225,17 @@ public class QLMHScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new QLMHScreen().setVisible(true);
+                QLMHScreen qlmhScreen = new QLMHScreen();
+                qlmhScreen.setVisible(true);
+                qlmhScreen = (QLMHScreen) CenterScreen.centerWindow(qlmhScreen);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton RemoveMH;
+    private javax.swing.JButton btnBackHome;
     private javax.swing.JButton clickCTMH;
-    private javax.swing.JButton closeQLMH;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

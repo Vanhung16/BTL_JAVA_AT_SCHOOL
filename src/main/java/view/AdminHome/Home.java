@@ -4,23 +4,24 @@
  */
 package view.AdminHome;
 
-import com.google.protobuf.Message;
-import view.Login.Login;
 import com.mycompany.quanlydangkymonhoc.connectDB.connectDataBase;
 import java.awt.Dimension;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import models.NhomMon;
-import models.TableNhomMon;
+import utilis.CenterScreen;
+import utilis.Global;
+import utilis.ProtectScreen;
+import view.AdminKhoa.KhoaScreen;
 import view.AdminQLGV.QLGVScreen;
 import view.AdminQLMH.QLMHScreen;
 import view.AdminQLSV.QLSVScreen;
+import view.Login.Login;
 
 /**
  *
@@ -36,11 +37,26 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
         initComponents();
-        LoadTableNhomMon();
+        LoadHomeScreen();
     }
 
-    public void LoadTableNhomMon() {
-        tableNhomMon.setModel(new TableNhomMon(dsNhomMon));
+    public void LoadHomeScreen() {
+        PreparedStatement st;
+        ResultSet rs;
+
+        String sql = "SELECT * FROM admin WHERE id = ?";
+        try {
+            st = connectDataBase.getConnection().prepareStatement(sql);
+            st.setString(1, Global.idLogin + "");
+            rs = st.executeQuery();
+
+            if (rs.next()) {
+                lbNameAdminLogin.setText(rs.getString("name"));
+                lbEmailAdminLogin.setText(rs.getString("email"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -68,15 +84,21 @@ public class Home extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jCheckBoxMenuItem4 = new javax.swing.JCheckBoxMenuItem();
         jFrame1 = new javax.swing.JFrame();
-        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnGiaoVien = new javax.swing.JButton();
         btnQLSV = new javax.swing.JButton();
         btnQLMH = new javax.swing.JButton();
+        btnQLKhoa = new javax.swing.JButton();
+        btnQLMH2 = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tableNhomMon = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        lbNameLogin = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lbNameAdminLogin = new javax.swing.JLabel();
+        lbNameLogin2 = new javax.swing.JLabel();
+        lbEmailAdminLogin = new javax.swing.JLabel();
 
         jMenu1.setText("jMenu1");
 
@@ -120,18 +142,14 @@ public class Home extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 600));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setBackground(new java.awt.Color(0, 0, 255));
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 51, 255));
-        jLabel1.setText("Trang chủ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 17, 97, 50));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         btnGiaoVien.setText("Quản lý giáo viên");
         btnGiaoVien.addActionListener(new java.awt.event.ActionListener() {
@@ -154,31 +172,59 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        btnQLKhoa.setText("Quản lý khoa");
+        btnQLKhoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQLKhoaActionPerformed(evt);
+            }
+        });
+
+        btnQLMH2.setText("Quản lý nhóm môn");
+        btnQLMH2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQLMH2ActionPerformed(evt);
+            }
+        });
+
+        btnLogout.setText("Đăng xuất");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnGiaoVien, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                    .addComponent(btnQLMH, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnQLMH2, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                    .addComponent(btnQLKhoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnQLMH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGiaoVien, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnQLSV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(12, 12, 12))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(118, 118, 118)
                 .addComponent(btnQLSV, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnGiaoVien, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnQLMH, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnGiaoVien, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addComponent(btnQLMH2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnQLKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(182, Short.MAX_VALUE))
         );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 73, -1, -1));
 
         btnClose.setText("Đóng");
         btnClose.addActionListener(new java.awt.event.ActionListener() {
@@ -186,31 +232,82 @@ public class Home extends javax.swing.JFrame {
                 btnCloseActionPerformed(evt);
             }
         });
-        getContentPane().add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(676, 527, -1, -1));
 
-        tableNhomMon.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane3.setViewportView(tableNhomMon);
-        if (tableNhomMon.getColumnModel().getColumnCount() > 0) {
-            tableNhomMon.getColumnModel().getColumn(2).setResizable(false);
-            tableNhomMon.getColumnModel().getColumn(3).setResizable(false);
-        }
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 10)); // NOI18N
+        jLabel2.setText("Phần mềm quản lý đăng kí tín chỉ - 2022 | © copyright");
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 510, 330));
+        lbNameLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbNameLogin.setText("Emai: ");
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 102, 153));
-        jLabel2.setText("Danh sách các nhóm môn được mở");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 35, -1, -1));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/AdminHome/images/admin-user-icon-133438.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel4.setText("TRANG QUẢN TRỊ HỆ THỐNG");
+
+        lbNameAdminLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbNameAdminLogin.setText("xxxx");
+
+        lbNameLogin2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbNameLogin2.setText("Tên:");
+
+        lbEmailAdminLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbEmailAdminLogin.setText("xxxx");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(31, 31, 31)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbNameLogin2)
+                                            .addComponent(lbNameLogin))
+                                        .addGap(44, 44, 44)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(lbEmailAdminLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                                            .addComponent(lbNameAdminLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                        .addGap(130, 130, 130))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnClose)
+                        .addGap(91, 91, 91))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(85, 85, 85)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbNameAdminLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbNameLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbNameLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbEmailAdminLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(250, 250, 250)
+                .addComponent(btnClose)
+                .addGap(48, 48, 48)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -219,30 +316,11 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
         QLGVScreen gVScreen = new QLGVScreen();
         gVScreen.setVisible(true);
+        gVScreen = (QLGVScreen) CenterScreen.centerWindow(gVScreen);
     }//GEN-LAST:event_btnGiaoVienActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-        PreparedStatement st;
-        ResultSet rs;
-        String sql = "SELECT * FROM `nhom_mon` WHERE 1";
-        try {
-            st = connectDataBase.getConnection().prepareStatement(sql);
-            rs = st.executeQuery();
-            NhomMon x = null;
-            ArrayList<NhomMon> list = new ArrayList<>();
-            while (rs.next()) {
-                x = new NhomMon(rs.getInt("id"), rs.getString("name"));
-                dsNhomMon.add(x);
-            }
-//            dsNhomMon.addAll(list);
-            LoadTableNhomMon();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
+        lbNameLogin.setText(Global.nameLogin);
     }//GEN-LAST:event_formWindowOpened
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
@@ -252,15 +330,40 @@ public class Home extends javax.swing.JFrame {
 
     private void btnQLSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLSVActionPerformed
         // TODO add your handling code here:
+        this.dispose();
         QLSVScreen lSVScreen = new QLSVScreen();
         lSVScreen.setVisible(true);
+        lSVScreen = (QLSVScreen) CenterScreen.centerWindow(lSVScreen);
     }//GEN-LAST:event_btnQLSVActionPerformed
 
     private void btnQLMHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLMHActionPerformed
         // TODO add your handling code here:
         QLMHScreen qLMHScreen = new QLMHScreen();
         qLMHScreen.setVisible(true);
+        qLMHScreen = (QLMHScreen) CenterScreen.centerWindow(qLMHScreen);
     }//GEN-LAST:event_btnQLMHActionPerformed
+
+    private void btnQLKhoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLKhoaActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        KhoaScreen khoaScreen = new KhoaScreen();
+        khoaScreen = (KhoaScreen) CenterScreen.centerWindow(khoaScreen);
+        khoaScreen.show();
+        
+    }//GEN-LAST:event_btnQLKhoaActionPerformed
+
+    private void btnQLMH2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLMH2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnQLMH2ActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        // TODO add your handling code here:
+        Global.idLogin = 0;
+        this.dispose();
+        Login loginScreen = new Login();
+        loginScreen = (Login) CenterScreen.centerWindow(loginScreen);
+        loginScreen.show();
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,9 +396,14 @@ public class Home extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Home homeScreen = new Home();
+//                protect screen
+//                if (Global.idLogin == 0) {
+//                    homeScreen = (Home) ProtectScreen.protectScreen(homeScreen);
+//                }
                 homeScreen.setVisible(true);
+                homeScreen.setTitle("Trang chủ");
                 homeScreen.setPreferredSize(new Dimension(800, 600));
-                Login.centerWindow(homeScreen);
+                homeScreen = (Home) CenterScreen.centerWindow(homeScreen);
                 homeScreen.setResizable(false);
             }
         });
@@ -304,7 +412,10 @@ public class Home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnGiaoVien;
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnQLKhoa;
     private javax.swing.JButton btnQLMH;
+    private javax.swing.JButton btnQLMH2;
     private javax.swing.JButton btnQLSV;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
@@ -313,6 +424,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -325,8 +437,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable tableNhomMon;
+    private javax.swing.JLabel lbEmailAdminLogin;
+    private javax.swing.JLabel lbNameAdminLogin;
+    private javax.swing.JLabel lbNameLogin;
+    private javax.swing.JLabel lbNameLogin2;
     // End of variables declaration//GEN-END:variables
 
 }
