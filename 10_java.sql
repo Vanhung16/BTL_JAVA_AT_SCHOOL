@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 03, 2022 lúc 06:06 PM
--- Phiên bản máy phục vụ: 10.4.22-MariaDB
--- Phiên bản PHP: 8.1.2
+-- Host: 127.0.0.1
+-- Generation Time: Jun 04, 2022 at 04:18 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,33 +18,34 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `10_java`
+-- Database: `10_java`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `email` char(255) NOT NULL,
   `password` char(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `admin`
+-- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `email`, `password`) VALUES
-(3, 'hoang@haui.com', '1'),
-(4, 'hung@haui.com', '1');
+INSERT INTO `admin` (`id`, `name`, `email`, `password`) VALUES
+(3, 'Hoang Admin', 'hoang@haui.com', '1'),
+(4, 'Hung Admin', 'hung@haui.com', '1');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `giao_vien`
+-- Table structure for table `giao_vien`
 --
 
 CREATE TABLE `giao_vien` (
@@ -55,7 +56,7 @@ CREATE TABLE `giao_vien` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `giao_vien`
+-- Dumping data for table `giao_vien`
 --
 
 INSERT INTO `giao_vien` (`id`, `name`, `address`, `phone`) VALUES
@@ -66,7 +67,7 @@ INSERT INTO `giao_vien` (`id`, `name`, `address`, `phone`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `khoa`
+-- Table structure for table `khoa`
 --
 
 CREATE TABLE `khoa` (
@@ -75,19 +76,21 @@ CREATE TABLE `khoa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `khoa`
+-- Dumping data for table `khoa`
 --
 
 INSERT INTO `khoa` (`id`, `name`) VALUES
 (1, 'CÔNG NGHỆ THÔNG TIN'),
 (2, 'QUẢN TRỊ KINH DOANH'),
 (3, 'DU LICH'),
-(4, 'ĐIỆN TỬ VIỄN THÔNG');
+(4, 'ĐIỆN TỬ VIỄN THÔNG'),
+(25, 'Điện'),
+(27, 'Khoa học máy tính');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `mon_hoc`
+-- Table structure for table `mon_hoc`
 --
 
 CREATE TABLE `mon_hoc` (
@@ -98,7 +101,7 @@ CREATE TABLE `mon_hoc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `mon_hoc`
+-- Dumping data for table `mon_hoc`
 --
 
 INSERT INTO `mon_hoc` (`id`, `name`, `so_tin_chi`, `id_nhom`) VALUES
@@ -107,7 +110,7 @@ INSERT INTO `mon_hoc` (`id`, `name`, `so_tin_chi`, `id_nhom`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `nhom_mon`
+-- Table structure for table `nhom_mon`
 --
 
 CREATE TABLE `nhom_mon` (
@@ -116,7 +119,7 @@ CREATE TABLE `nhom_mon` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `nhom_mon`
+-- Dumping data for table `nhom_mon`
 --
 
 INSERT INTO `nhom_mon` (`id`, `name`) VALUES
@@ -130,7 +133,7 @@ INSERT INTO `nhom_mon` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `sinh_vien`
+-- Table structure for table `sinh_vien`
 --
 
 CREATE TABLE `sinh_vien` (
@@ -143,7 +146,7 @@ CREATE TABLE `sinh_vien` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `sinh_vien`
+-- Dumping data for table `sinh_vien`
 --
 
 INSERT INTO `sinh_vien` (`id`, `code`, `name`, `nien_khoa`, `password`, `id_khoa`) VALUES
@@ -153,7 +156,7 @@ INSERT INTO `sinh_vien` (`id`, `code`, `name`, `nien_khoa`, `password`, `id_khoa
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tkb_mh`
+-- Table structure for table `tkb_mh`
 --
 
 CREATE TABLE `tkb_mh` (
@@ -170,7 +173,7 @@ CREATE TABLE `tkb_mh` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `tkb_sv`
+-- Table structure for table `tkb_sv`
 --
 
 CREATE TABLE `tkb_sv` (
@@ -183,49 +186,49 @@ CREATE TABLE `tkb_sv` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `giao_vien`
+-- Indexes for table `giao_vien`
 --
 ALTER TABLE `giao_vien`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `khoa`
+-- Indexes for table `khoa`
 --
 ALTER TABLE `khoa`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `mon_hoc`
+-- Indexes for table `mon_hoc`
 --
 ALTER TABLE `mon_hoc`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_nhom` (`id_nhom`);
 
 --
--- Chỉ mục cho bảng `nhom_mon`
+-- Indexes for table `nhom_mon`
 --
 ALTER TABLE `nhom_mon`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `sinh_vien`
+-- Indexes for table `sinh_vien`
 --
 ALTER TABLE `sinh_vien`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_khoa` (`id_khoa`);
 
 --
--- Chỉ mục cho bảng `tkb_mh`
+-- Indexes for table `tkb_mh`
 --
 ALTER TABLE `tkb_mh`
   ADD PRIMARY KEY (`id`),
@@ -233,7 +236,7 @@ ALTER TABLE `tkb_mh`
   ADD KEY `id_mon_hoc` (`id_mon_hoc`);
 
 --
--- Chỉ mục cho bảng `tkb_sv`
+-- Indexes for table `tkb_sv`
 --
 ALTER TABLE `tkb_sv`
   ADD PRIMARY KEY (`id`),
@@ -241,82 +244,82 @@ ALTER TABLE `tkb_sv`
   ADD KEY `id_mon_hoc` (`id_mon_hoc`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `admin`
+-- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT cho bảng `giao_vien`
+-- AUTO_INCREMENT for table `giao_vien`
 --
 ALTER TABLE `giao_vien`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT cho bảng `khoa`
+-- AUTO_INCREMENT for table `khoa`
 --
 ALTER TABLE `khoa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
--- AUTO_INCREMENT cho bảng `mon_hoc`
+-- AUTO_INCREMENT for table `mon_hoc`
 --
 ALTER TABLE `mon_hoc`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT cho bảng `nhom_mon`
+-- AUTO_INCREMENT for table `nhom_mon`
 --
 ALTER TABLE `nhom_mon`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT cho bảng `sinh_vien`
+-- AUTO_INCREMENT for table `sinh_vien`
 --
 ALTER TABLE `sinh_vien`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT cho bảng `tkb_mh`
+-- AUTO_INCREMENT for table `tkb_mh`
 --
 ALTER TABLE `tkb_mh`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `tkb_sv`
+-- AUTO_INCREMENT for table `tkb_sv`
 --
 ALTER TABLE `tkb_sv`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `mon_hoc`
+-- Constraints for table `mon_hoc`
 --
 ALTER TABLE `mon_hoc`
   ADD CONSTRAINT `mon_hoc_ibfk_1` FOREIGN KEY (`id_nhom`) REFERENCES `nhom_mon` (`id`);
 
 --
--- Các ràng buộc cho bảng `sinh_vien`
+-- Constraints for table `sinh_vien`
 --
 ALTER TABLE `sinh_vien`
   ADD CONSTRAINT `sinh_vien_ibfk_1` FOREIGN KEY (`id_khoa`) REFERENCES `khoa` (`id`);
 
 --
--- Các ràng buộc cho bảng `tkb_mh`
+-- Constraints for table `tkb_mh`
 --
 ALTER TABLE `tkb_mh`
   ADD CONSTRAINT `tkb_mh_ibfk_1` FOREIGN KEY (`id_giao_vien`) REFERENCES `giao_vien` (`id`),
   ADD CONSTRAINT `tkb_mh_ibfk_2` FOREIGN KEY (`id_mon_hoc`) REFERENCES `mon_hoc` (`id`);
 
 --
--- Các ràng buộc cho bảng `tkb_sv`
+-- Constraints for table `tkb_sv`
 --
 ALTER TABLE `tkb_sv`
   ADD CONSTRAINT `tkb_sv_ibfk_1` FOREIGN KEY (`id_sv`) REFERENCES `sinh_vien` (`id`),
