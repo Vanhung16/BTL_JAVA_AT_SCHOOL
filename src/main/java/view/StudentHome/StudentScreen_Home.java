@@ -313,6 +313,11 @@ public class StudentScreen_Home extends javax.swing.JFrame {
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
+        Global.idLogin = 0;
+        this.dispose();
+        Login loginScreen = new Login();
+        loginScreen = (Login) CenterScreen.centerWindow(loginScreen);
+        loginScreen.show();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePassActionPerformed

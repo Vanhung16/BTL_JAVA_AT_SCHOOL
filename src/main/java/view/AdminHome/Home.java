@@ -12,12 +12,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import models.NhomMon;
-import models.TableNhomMon;
 import utilis.CenterScreen;
+import utilis.Global;
+import utilis.ProtectScreen;
 import view.AdminQLGV.QLGVScreen;
 import view.AdminQLMH.QLMHScreen;
 import view.AdminQLSV.QLSVScreen;
+import view.Login.Login;
 
 /**
  *
@@ -33,11 +36,26 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
         initComponents();
-        LoadTableNhomMon();
+        LoadHomeScreen();
     }
 
-    public void LoadTableNhomMon() {
-        tableNhomMon.setModel(new TableNhomMon(dsNhomMon));
+    public void LoadHomeScreen() {
+        PreparedStatement st;
+        ResultSet rs;
+
+        String sql = "SELECT * FROM admin WHERE id = ?";
+        try {
+            st = connectDataBase.getConnection().prepareStatement(sql);
+            st.setString(1, Global.idLogin + "");
+            rs = st.executeQuery();
+
+            if (rs.next()) {
+                lbNameAdminLogin.setText(rs.getString("name"));
+                lbEmailAdminLogin.setText(rs.getString("email"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -69,12 +87,14 @@ public class Home extends javax.swing.JFrame {
         btnGiaoVien = new javax.swing.JButton();
         btnQLSV = new javax.swing.JButton();
         btnQLMH = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tableNhomMon = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lbNameLogin = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        lbNameAdminLogin = new javax.swing.JLabel();
+        lbNameLogin2 = new javax.swing.JLabel();
+        lbEmailAdminLogin = new javax.swing.JLabel();
 
         jMenu1.setText("jMenu1");
 
@@ -124,7 +144,6 @@ public class Home extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -149,21 +168,12 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setBackground(new java.awt.Color(0, 0, 255));
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 51, 255));
-        jLabel1.setText("Trang chủ");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 25, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnQLSV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -172,15 +182,13 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(btnQLMH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnGiaoVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(btnGiaoVien, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)))
                 .addGap(12, 12, 12))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(118, 118, 118)
                 .addComponent(btnQLSV, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnQLMH, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -189,43 +197,88 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap(341, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1, -2, 170, 600));
-
         btnClose.setText("Đóng");
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCloseActionPerformed(evt);
             }
         });
-        getContentPane().add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 460, -1, -1));
-
-        tableNhomMon.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane3.setViewportView(tableNhomMon);
-        if (tableNhomMon.getColumnModel().getColumnCount() > 0) {
-            tableNhomMon.getColumnModel().getColumn(2).setResizable(false);
-            tableNhomMon.getColumnModel().getColumn(3).setResizable(false);
-        }
-
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 540, 330));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 10)); // NOI18N
         jLabel2.setText("Phần mềm quản lý đăng kí tín chỉ - 2022 | © copyright");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 530, 240, 30));
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 3, 20)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 102, 153));
-        jLabel3.setText("Danh sách các nhóm môn");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, -1, -1));
+        lbNameLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbNameLogin.setText("Emai: ");
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/AdminHome/images/admin-user-icon-133438.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 255));
+        jLabel4.setText("TRANG QUẢN TRỊ HỆ THỐNG");
+
+        lbNameAdminLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbNameAdminLogin.setText("xxxx");
+
+        lbNameLogin2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbNameLogin2.setText("Tên:");
+
+        lbEmailAdminLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbEmailAdminLogin.setText("xxxx");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(31, 31, 31)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbNameLogin2)
+                                            .addComponent(lbNameLogin))
+                                        .addGap(44, 44, 44)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(lbEmailAdminLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                                            .addComponent(lbNameAdminLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                        .addGap(130, 130, 130))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnClose)
+                        .addGap(58, 58, 58))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbNameAdminLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbNameLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbNameLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbEmailAdminLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(248, 248, 248)
+                .addComponent(btnClose)
+                .addGap(50, 50, 50)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -238,27 +291,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGiaoVienActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-        PreparedStatement st;
-        ResultSet rs;
-        String sql = "SELECT * FROM `nhom_mon` WHERE 1";
-        try {
-            st = connectDataBase.getConnection().prepareStatement(sql);
-            rs = st.executeQuery();
-            NhomMon x = null;
-            ArrayList<NhomMon> list = new ArrayList<>();
-            while (rs.next()) {
-                x = new NhomMon(rs.getInt("id"), rs.getString("name"));
-                dsNhomMon.add(x);
-            }
-//            dsNhomMon.addAll(list);
-            LoadTableNhomMon();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
+        lbNameLogin.setText(Global.nameLogin);
     }//GEN-LAST:event_formWindowOpened
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
@@ -311,6 +344,9 @@ public class Home extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Home homeScreen = new Home();
+                if (Global.idLogin == 0) {
+                    homeScreen = (Home) ProtectScreen.protectScreen(homeScreen);
+                }
                 homeScreen.setVisible(true);
                 homeScreen.setTitle("Trang chủ");
                 homeScreen.setPreferredSize(new Dimension(800, 600));
@@ -332,7 +368,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -345,8 +381,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable tableNhomMon;
+    private javax.swing.JLabel lbEmailAdminLogin;
+    private javax.swing.JLabel lbNameAdminLogin;
+    private javax.swing.JLabel lbNameLogin;
+    private javax.swing.JLabel lbNameLogin2;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -25,6 +25,7 @@ import view.StudentHome.StudentScreen_Home;
  * @author Admin
  */
 public class Login extends javax.swing.JFrame {
+
     /**
      * Creates new form Login
      */
@@ -208,9 +209,9 @@ public class Login extends javax.swing.JFrame {
                 rs = st.executeQuery();
 
                 if (rs.next()) {
-//                JOptionPane.showMessageDialog(null, "Đăng nhập thành công", "Thông báo", 2);
                     this.dispose();
                     Global.nameLogin = rs.getString("name");
+                    Global.idLogin = rs.getInt("id");
                     Home homeScreen = new Home();
                     homeScreen = (Home) CenterScreen.centerWindow(homeScreen);
                     homeScreen.show();
@@ -228,7 +229,6 @@ public class Login extends javax.swing.JFrame {
                 rssv = stsv.executeQuery();
 
                 if (rssv.next()) {
-                    //JOptionPane.showMessageDialog(null, "Đăng nhập thành công", "Thông báo", 2);
                     this.dispose();
                     Global.nameLogin = rssv.getString("name");
                     Global.idLogin = rssv.getInt("id");
