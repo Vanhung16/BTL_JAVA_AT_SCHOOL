@@ -4,7 +4,6 @@
  */
 package view.AdminHome;
 
-import view.Login.Login;
 import com.mycompany.quanlydangkymonhoc.connectDB.connectDataBase;
 import java.awt.Dimension;
 import java.sql.PreparedStatement;

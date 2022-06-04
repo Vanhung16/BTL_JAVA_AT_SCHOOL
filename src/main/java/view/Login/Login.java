@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import utilis.CenterScreen;
+import utilis.Global;
 import view.AdminHome.Home;
 import view.StudentHome.StudentScreen_Home;
 
@@ -24,7 +25,6 @@ import view.StudentHome.StudentScreen_Home;
  * @author Admin
  */
 public class Login extends javax.swing.JFrame {
-
     /**
      * Creates new form Login
      */
@@ -210,6 +210,7 @@ public class Login extends javax.swing.JFrame {
                 if (rs.next()) {
 //                JOptionPane.showMessageDialog(null, "Đăng nhập thành công", "Thông báo", 2);
                     this.dispose();
+                    Global.nameLogin = rs.getString("name");
                     Home homeScreen = new Home();
                     homeScreen = (Home) CenterScreen.centerWindow(homeScreen);
                     homeScreen.show();
@@ -229,6 +230,8 @@ public class Login extends javax.swing.JFrame {
                 if (rssv.next()) {
                     //JOptionPane.showMessageDialog(null, "Đăng nhập thành công", "Thông báo", 2);
                     this.dispose();
+                    Global.nameLogin = rssv.getString("name");
+                    Global.idLogin = rssv.getInt("id");
                     StudentScreen_Home homeStudenScreen = new StudentScreen_Home();
                     homeStudenScreen = (StudentScreen_Home) CenterScreen.centerWindow(homeStudenScreen);
                     homeStudenScreen.show();
