@@ -330,6 +330,7 @@ public class Home extends javax.swing.JFrame {
 
     private void btnQLSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLSVActionPerformed
         // TODO add your handling code here:
+        this.dispose();
         QLSVScreen lSVScreen = new QLSVScreen();
         lSVScreen.setVisible(true);
         lSVScreen = (QLSVScreen) CenterScreen.centerWindow(lSVScreen);
