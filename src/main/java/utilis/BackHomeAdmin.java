@@ -13,7 +13,7 @@ import view.AdminHome.Home;
  */
 public class BackHomeAdmin {
 
-    public static void excute(Window frame) {
+    public static void execute(Window frame) {
         frame.dispose();
         Home homeScreen = new Home();
         homeScreen = (Home) CenterScreen.centerWindow(homeScreen);

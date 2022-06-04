@@ -14,9 +14,9 @@ import javax.swing.table.AbstractTableModel;
  */
 public class TableGiaoVien extends AbstractTableModel {
 
-    private String heading[] = {"Mã giáo viên", "Địa Chỉ","Điện Thoại"};
+    private String heading[] = {"Mã giáo viên", "Tên giáo viên",  "Địa Chỉ","Điện Thoại"};
 
-    private Class classess[] = {String.class, String.class, String.class};
+    private Class classess[] = {String.class,String.class, String.class, String.class};
 
 //    ArrayList<GiaoVien> dsGiaoVien = new ArrayList<GiaoVien>();
     ArrayList<GiaoVien> dsGiaoVien = new ArrayList<>();
@@ -40,7 +40,6 @@ public class TableGiaoVien extends AbstractTableModel {
         switch (columnIndex) {
             case 0:
                return dsGiaoVien.get(rowIndex).getId();
-
             case 1:
                 return dsGiaoVien.get(rowIndex).getName();
             case 2:
