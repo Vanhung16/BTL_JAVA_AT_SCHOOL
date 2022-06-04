@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import models.GiaoVien;
+import utilis.CenterScreen;
 
 /**
  *
@@ -202,7 +203,9 @@ public class QLGVScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new QLGVScreen().setVisible(true);
+                QLGVScreen qlgvScreen = new QLGVScreen();
+                qlgvScreen.setVisible(true);
+                qlgvScreen = (QLGVScreen) CenterScreen.centerWindow(qlgvScreen);
             }
         });
     }

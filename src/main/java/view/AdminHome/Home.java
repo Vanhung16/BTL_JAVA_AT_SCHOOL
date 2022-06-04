@@ -4,7 +4,6 @@
  */
 package view.AdminHome;
 
-import com.google.protobuf.Message;
 import view.Login.Login;
 import com.mycompany.quanlydangkymonhoc.connectDB.connectDataBase;
 import java.awt.Dimension;
@@ -12,12 +11,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import models.NhomMon;
 import models.TableNhomMon;
+import utilis.CenterScreen;
 import view.AdminQLGV.QLGVScreen;
 import view.AdminQLMH.QLMHScreen;
 import view.AdminQLSV.QLSVScreen;
@@ -68,15 +66,16 @@ public class Home extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jCheckBoxMenuItem4 = new javax.swing.JCheckBoxMenuItem();
         jFrame1 = new javax.swing.JFrame();
-        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnGiaoVien = new javax.swing.JButton();
         btnQLSV = new javax.swing.JButton();
         btnQLMH = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableNhomMon = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         jMenu1.setText("jMenu1");
 
@@ -120,6 +119,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 600));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -127,11 +127,7 @@ public class Home extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setBackground(new java.awt.Color(0, 0, 255));
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 51, 255));
-        jLabel1.setText("Trang chủ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 17, 97, 50));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         btnGiaoVien.setText("Quản lý giáo viên");
         btnGiaoVien.addActionListener(new java.awt.event.ActionListener() {
@@ -154,31 +150,47 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setBackground(new java.awt.Color(0, 0, 255));
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 255));
+        jLabel1.setText("Trang chủ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnGiaoVien, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                    .addComponent(btnQLMH, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnQLSV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 25, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnQLSV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnQLMH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnGiaoVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(12, 12, 12))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
                 .addComponent(btnQLSV, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnQLMH, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnGiaoVien, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addContainerGap(341, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(17, 73, -1, -1));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-1, -2, 170, 600));
 
         btnClose.setText("Đóng");
         btnClose.addActionListener(new java.awt.event.ActionListener() {
@@ -186,7 +198,7 @@ public class Home extends javax.swing.JFrame {
                 btnCloseActionPerformed(evt);
             }
         });
-        getContentPane().add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(676, 527, -1, -1));
+        getContentPane().add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 460, -1, -1));
 
         tableNhomMon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -205,12 +217,16 @@ public class Home extends javax.swing.JFrame {
             tableNhomMon.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 510, 330));
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 540, 330));
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 102, 153));
-        jLabel2.setText("Danh sách các nhóm môn được mở");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 35, -1, -1));
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 10)); // NOI18N
+        jLabel2.setText("Phần mềm quản lý đăng kí tín chỉ - 2022 | © copyright");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 530, 240, 30));
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 3, 20)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 102, 153));
+        jLabel3.setText("Danh sách các nhóm môn");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -219,6 +235,7 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
         QLGVScreen gVScreen = new QLGVScreen();
         gVScreen.setVisible(true);
+        gVScreen = (QLGVScreen) CenterScreen.centerWindow(gVScreen);
     }//GEN-LAST:event_btnGiaoVienActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -254,12 +271,14 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
         QLSVScreen lSVScreen = new QLSVScreen();
         lSVScreen.setVisible(true);
+        lSVScreen = (QLSVScreen) CenterScreen.centerWindow(lSVScreen);
     }//GEN-LAST:event_btnQLSVActionPerformed
 
     private void btnQLMHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLMHActionPerformed
         // TODO add your handling code here:
         QLMHScreen qLMHScreen = new QLMHScreen();
         qLMHScreen.setVisible(true);
+        qLMHScreen = (QLMHScreen) CenterScreen.centerWindow(qLMHScreen);
     }//GEN-LAST:event_btnQLMHActionPerformed
 
     /**
@@ -294,8 +313,9 @@ public class Home extends javax.swing.JFrame {
             public void run() {
                 Home homeScreen = new Home();
                 homeScreen.setVisible(true);
+                homeScreen.setTitle("Trang chủ");
                 homeScreen.setPreferredSize(new Dimension(800, 600));
-                Login.centerWindow(homeScreen);
+                homeScreen = (Home) CenterScreen.centerWindow(homeScreen);
                 homeScreen.setResizable(false);
             }
         });
@@ -313,6 +333,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

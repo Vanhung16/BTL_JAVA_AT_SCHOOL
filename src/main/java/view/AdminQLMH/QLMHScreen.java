@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import models.MonHoc;
+import utilis.CenterScreen;
 
 /**
  *
@@ -62,6 +63,7 @@ public class QLMHScreen extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("Danh sách môn học");
 
+        tableMonHoc.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         tableMonHoc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -75,7 +77,7 @@ public class QLMHScreen extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableMonHoc);
 
-        RemoveMH.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        RemoveMH.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         RemoveMH.setText("Xóa");
         RemoveMH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,7 +85,7 @@ public class QLMHScreen extends javax.swing.JFrame {
             }
         });
 
-        closeQLMH.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        closeQLMH.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         closeQLMH.setText("Đóng");
         closeQLMH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,7 +93,7 @@ public class QLMHScreen extends javax.swing.JFrame {
             }
         });
 
-        clickCTMH.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        clickCTMH.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         clickCTMH.setText("Xem chi tiết");
         clickCTMH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,7 +141,7 @@ public class QLMHScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,7 +222,9 @@ public class QLMHScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new QLMHScreen().setVisible(true);
+                QLMHScreen qlmhScreen =  new QLMHScreen();
+                qlmhScreen.setVisible(true);
+                qlmhScreen = (QLMHScreen) CenterScreen.centerWindow(qlmhScreen);
             }
         });
     }
