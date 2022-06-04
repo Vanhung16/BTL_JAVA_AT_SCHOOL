@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import models.MonHoc;
 import utilis.BackHomeAdmin;
 import utilis.CenterScreen;
+import utilis.ProtectScreen;
 
 /**
  *
@@ -52,9 +53,16 @@ public class QLMHScreen extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableMonHoc = new javax.swing.JTable();
-        RemoveMH = new javax.swing.JButton();
         btnBackHome = new javax.swing.JButton();
-        clickCTMH = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtSoTinChi = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        cbNhomMon = new javax.swing.JComboBox<>();
+        btnAdd = new javax.swing.JButton();
+        btnDeleteItem = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -64,7 +72,8 @@ public class QLMHScreen extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel1.setText("Danh sách môn học");
+        jLabel1.setForeground(java.awt.Color.red);
+        jLabel1.setText("Thêm môn học mới");
 
         tableMonHoc.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         tableMonHoc.setModel(new javax.swing.table.DefaultTableModel(
@@ -80,27 +89,59 @@ public class QLMHScreen extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableMonHoc);
 
-        RemoveMH.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        RemoveMH.setText("Xóa");
-        RemoveMH.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RemoveMHActionPerformed(evt);
-            }
-        });
-
         btnBackHome.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnBackHome.setText("Quay lại");
+        btnBackHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBackHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackHomeActionPerformed(evt);
             }
         });
 
-        clickCTMH.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        clickCTMH.setText("Xem chi tiết");
-        clickCTMH.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel2.setForeground(java.awt.Color.red);
+        jLabel2.setText("Danh sách môn học");
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel3.setForeground(java.awt.Color.red);
+        jLabel3.setText("Tên môn: ");
+
+        txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clickCTMHActionPerformed(evt);
+                txtNameActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel4.setForeground(java.awt.Color.red);
+        jLabel4.setText("Số tín chỉ: ");
+
+        txtSoTinChi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSoTinChiActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel5.setForeground(java.awt.Color.red);
+        jLabel5.setText("Nhóm môn học");
+
+        cbNhomMon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        btnAdd.setText("Thêm môn học mới");
+        btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
+        btnDeleteItem.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnDeleteItem.setText("Xóa");
+        btnDeleteItem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnDeleteItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteItemActionPerformed(evt);
             }
         });
 
@@ -109,17 +150,28 @@ public class QLMHScreen extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(RemoveMH, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(230, 230, 230)
-                        .addComponent(clickCTMH)
-                        .addGap(217, 217, 217)
+                        .addComponent(btnDeleteItem)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnBackHome, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel1)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnAdd)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addGap(39, 39, 39)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtSoTinChi, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(txtName)
+                                    .addComponent(cbNhomMon, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -127,13 +179,28 @@ public class QLMHScreen extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jLabel1)
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtSoTinChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(cbNhomMon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnAdd)
+                .addGap(24, 24, 24)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RemoveMH)
                     .addComponent(btnBackHome)
-                    .addComponent(clickCTMH))
+                    .addComponent(btnDeleteItem))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
@@ -151,49 +218,95 @@ public class QLMHScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void RemoveMHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveMHActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RemoveMHActionPerformed
-
-    private void clickCTMHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickCTMHActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_clickCTMHActionPerformed
-
     private void btnBackHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackHomeActionPerformed
         // TODO add your handling code here:
-        BackHomeAdmin.excute(this);
+        BackHomeAdmin.execute(this);
     }//GEN-LAST:event_btnBackHomeActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
+        fetchData();
+    }//GEN-LAST:event_formWindowOpened
 
-        PreparedStatement st;
-        ResultSet rs;
-        String query = "SELECT  mon_hoc.id,mon_hoc.name,mon_hoc.so_tin_chi,nhom_mon.name as ten_nhom FROM `mon_hoc` INNER JOIN nhom_mon ON mon_hoc.id_nhom = nhom_mon.id\n"
-                + "";
+    public void fetchData() {
+        dsMonHoc = new ArrayList<>();
         try {
-            st = connectDataBase.getConnection().prepareStatement(query);
-            rs = st.executeQuery();
+            String sql = "SELECT  mon_hoc.id,mon_hoc.name,mon_hoc.so_tin_chi,nhom_mon.name "
+                    + "as ten_nhom FROM `mon_hoc` INNER JOIN nhom_mon ON mon_hoc.id_nhom = nhom_mon.id\n";
+            ResultSet rs = services.Services.get(sql);
             MonHoc x = null;
-
             while (rs.next()) {
                 x = new MonHoc(rs.getInt("mon_hoc.id"), rs.getString("mon_hoc.name"), rs.getInt("mon_hoc.so_tin_chi"), rs.getString("ten_nhom"));
                 dsMonHoc.add(x);
             }
-            Logger.getLogger(x.toString());
             LoadTableMonHoc();
-        } catch (SQLException ex) {
-            Logger.getLogger(QLMHScreen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
+
+    private void txtSoTinChiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoTinChiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSoTinChiActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        String name = txtName.getText();
+        String so_tin_chi = txtSoTinChi.getText();
+//        String id_nhom = (String) cbNhomMon.getSelectedItem();
+        String id_nhom = "2";
+
+        if (name.equals("") || so_tin_chi.equals("") || id_nhom.equals("")) {
+            JOptionPane.showMessageDialog(this,
+                    "Yêu cầu nhập đủ các trường !",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        try {
+            String sql = "INSERT INTO `mon_hoc`(`name`, `so_tin_chi`, `id_nhom`) VALUES ('" + name + "','" + so_tin_chi + "','" + id_nhom + "')";
+            services.Services.post(sql);
+            fetchData();
+            txtName.setText("");
+            txtSoTinChi.setText("");
+            txtName.requestFocus();
+        } catch (Exception ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(this, ex,
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnDeleteItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteItemActionPerformed
+        // TODO add your handling code here:
+        int row = tableMonHoc.getSelectedRow();
+        // lấy id của khoa cần xóa
+        int idDelete = -1;
+        idDelete = (int) tableMonHoc.getModel().getValueAt(row, 0);
+
+        if (idDelete == -1) {
+            JOptionPane.showMessageDialog(this, "Yêu cầu chọn môn để xóa !",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
-
-    }//GEN-LAST:event_formWindowOpened
+        try {
+            String sql = "DELETE FROM `mon_hoc` WHERE id = " + idDelete;
+            services.Services.post(sql);
+            fetchData();
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }//GEN-LAST:event_btnDeleteItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,6 +339,7 @@ public class QLMHScreen extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 QLMHScreen qlmhScreen = new QLMHScreen();
+                qlmhScreen = (QLMHScreen)ProtectScreen.protectScreen(qlmhScreen);
                 qlmhScreen.setVisible(true);
                 qlmhScreen = (QLMHScreen) CenterScreen.centerWindow(qlmhScreen);
             }
@@ -233,12 +347,19 @@ public class QLMHScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton RemoveMH;
+    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBackHome;
-    private javax.swing.JButton clickCTMH;
+    private javax.swing.JButton btnDeleteItem;
+    private javax.swing.JComboBox<String> cbNhomMon;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableMonHoc;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtSoTinChi;
     // End of variables declaration//GEN-END:variables
 }

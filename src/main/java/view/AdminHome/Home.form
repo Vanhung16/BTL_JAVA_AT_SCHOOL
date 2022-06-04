@@ -220,11 +220,11 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="btnQLMH1" max="32767" attributes="0"/>
                       <Component id="btnLogout" max="32767" attributes="0"/>
-                      <Component id="btnQLMH2" pref="152" max="32767" attributes="0"/>
                       <Component id="btnQLKhoa" max="32767" attributes="0"/>
                       <Component id="btnQLMH" max="32767" attributes="0"/>
-                      <Component id="btnGiaoVien" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btnGiaoVien" alignment="0" pref="152" max="32767" attributes="0"/>
                       <Component id="btnQLSV" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
@@ -240,8 +240,8 @@
                   <Component id="btnGiaoVien" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnQLMH" min="-2" pref="35" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnQLMH2" min="-2" pref="35" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Component id="btnQLMH1" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnQLKhoa" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -255,6 +255,9 @@
         <Component class="javax.swing.JButton" name="btnGiaoVien">
           <Properties>
             <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; gi&#xe1;o vi&#xea;n"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGiaoVienActionPerformed"/>
@@ -263,6 +266,9 @@
         <Component class="javax.swing.JButton" name="btnQLSV">
           <Properties>
             <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; sinh vi&#xea;n"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnQLSVActionPerformed"/>
@@ -271,6 +277,9 @@
         <Component class="javax.swing.JButton" name="btnQLMH">
           <Properties>
             <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; m&#xf4;n h&#x1ecd;c"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnQLMHActionPerformed"/>
@@ -279,25 +288,34 @@
         <Component class="javax.swing.JButton" name="btnQLKhoa">
           <Properties>
             <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; khoa"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnQLKhoaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnQLMH2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; nh&#xf3;m m&#xf4;n"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnQLMH2ActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="btnLogout">
           <Properties>
             <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng xu&#x1ea5;t"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLogoutActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnQLMH1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="T&#x1ea1;o th&#x1edd;i kh&#xf3;a bi&#x1ec3;u"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnQLMH1ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
@@ -305,6 +323,9 @@
     <Component class="javax.swing.JButton" name="btnClose">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x110;&#xf3;ng"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Hand Cursor"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCloseActionPerformed"/>

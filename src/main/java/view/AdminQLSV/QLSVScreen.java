@@ -254,7 +254,7 @@ public class QLSVScreen extends javax.swing.JFrame {
 
     private void btnBackHomeAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackHomeAdminActionPerformed
         // TODO add your handling code here:
-        BackHomeAdmin.excute(this);
+        BackHomeAdmin.execute(this);
 
     }//GEN-LAST:event_btnBackHomeAdminActionPerformed
 
@@ -326,6 +326,8 @@ public class QLSVScreen extends javax.swing.JFrame {
                 qlsvScreen = (QLSVScreen) CenterScreen.centerWindow(qlsvScreen);
                 qlsvScreen.setVisible(true);
                 qlsvScreen.setTitle("Quản lý sinh viên");
+                
+                String s1[] = { "Jalpaiguri", "Mumbai", "Noida", "Kolkata", "New Delhi" };
             }
         });
     }

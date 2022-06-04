@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import models.NhomMon;
 import utilis.CenterScreen;
 import utilis.Global;
@@ -89,8 +88,8 @@ public class Home extends javax.swing.JFrame {
         btnQLSV = new javax.swing.JButton();
         btnQLMH = new javax.swing.JButton();
         btnQLKhoa = new javax.swing.JButton();
-        btnQLMH2 = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
+        btnQLMH1 = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         lbNameLogin = new javax.swing.JLabel();
@@ -152,6 +151,7 @@ public class Home extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         btnGiaoVien.setText("Quản lý giáo viên");
+        btnGiaoVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnGiaoVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGiaoVienActionPerformed(evt);
@@ -159,6 +159,7 @@ public class Home extends javax.swing.JFrame {
         });
 
         btnQLSV.setText("Quản lý sinh viên");
+        btnQLSV.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnQLSV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnQLSVActionPerformed(evt);
@@ -166,6 +167,7 @@ public class Home extends javax.swing.JFrame {
         });
 
         btnQLMH.setText("Quản lý môn học");
+        btnQLMH.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnQLMH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnQLMHActionPerformed(evt);
@@ -173,23 +175,26 @@ public class Home extends javax.swing.JFrame {
         });
 
         btnQLKhoa.setText("Quản lý khoa");
+        btnQLKhoa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnQLKhoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnQLKhoaActionPerformed(evt);
             }
         });
 
-        btnQLMH2.setText("Quản lý nhóm môn");
-        btnQLMH2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQLMH2ActionPerformed(evt);
-            }
-        });
-
         btnLogout.setText("Đăng xuất");
+        btnLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogoutActionPerformed(evt);
+            }
+        });
+
+        btnQLMH1.setText("Tạo thời khóa biểu");
+        btnQLMH1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnQLMH1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQLMH1ActionPerformed(evt);
             }
         });
 
@@ -200,11 +205,11 @@ public class Home extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnQLMH1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnQLMH2, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
                     .addComponent(btnQLKhoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnQLMH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGiaoVien, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGiaoVien, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
                     .addComponent(btnQLSV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(12, 12, 12))
         );
@@ -218,7 +223,7 @@ public class Home extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnQLMH, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnQLMH2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnQLMH1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnQLKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -227,6 +232,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         btnClose.setText("Đóng");
+        btnClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCloseActionPerformed(evt);
@@ -314,9 +320,10 @@ public class Home extends javax.swing.JFrame {
 
     private void btnGiaoVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiaoVienActionPerformed
         // TODO add your handling code here:
+        this.dispose();        
         QLGVScreen gVScreen = new QLGVScreen();
-        gVScreen.setVisible(true);
         gVScreen = (QLGVScreen) CenterScreen.centerWindow(gVScreen);
+        gVScreen.show();
     }//GEN-LAST:event_btnGiaoVienActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -352,10 +359,6 @@ public class Home extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnQLKhoaActionPerformed
 
-    private void btnQLMH2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLMH2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnQLMH2ActionPerformed
-
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
         Global.idLogin = 0;
@@ -364,6 +367,10 @@ public class Home extends javax.swing.JFrame {
         loginScreen = (Login) CenterScreen.centerWindow(loginScreen);
         loginScreen.show();
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnQLMH1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLMH1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnQLMH1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -396,10 +403,7 @@ public class Home extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Home homeScreen = new Home();
-//                protect screen
-//                if (Global.idLogin == 0) {
-//                    homeScreen = (Home) ProtectScreen.protectScreen(homeScreen);
-//                }
+                homeScreen = (Home) ProtectScreen.protectScreen(homeScreen);
                 homeScreen.setVisible(true);
                 homeScreen.setTitle("Trang chủ");
                 homeScreen.setPreferredSize(new Dimension(800, 600));
@@ -415,7 +419,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnQLKhoa;
     private javax.swing.JButton btnQLMH;
-    private javax.swing.JButton btnQLMH2;
+    private javax.swing.JButton btnQLMH1;
     private javax.swing.JButton btnQLSV;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;

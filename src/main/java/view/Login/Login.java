@@ -233,7 +233,6 @@ public class Login extends javax.swing.JFrame {
                     StudentScreen_Home homeStudenScreen = new StudentScreen_Home();
                     homeStudenScreen = (StudentScreen_Home) CenterScreen.centerWindow(homeStudenScreen);
                     homeStudenScreen.show();
-
                 } else {
                     JOptionPane.showMessageDialog(null, "Tài khoản hoặc mật khẩu không chính xác", "Thông báo", 2);
                 }
