@@ -63,7 +63,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="354" max="32767" attributes="0"/>
+                  <EmptySpace pref="271" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -85,12 +85,12 @@
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtreNewPass" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="AccepChangePass" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnBack" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="191" max="32767" attributes="0"/>
+                  <EmptySpace pref="76" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -145,7 +145,8 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnBack">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x110;&#xf3;ng"/>
+            <Property name="text" type="java.lang.String" value="Quay l&#x1ea1;i"/>
+            <Property name="actionCommand" type="java.lang.String" value="Quay l&#x1ea1;i"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>

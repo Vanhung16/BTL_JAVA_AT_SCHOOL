@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import utilis.CenterScreen;
 import utilis.Global;
+import utilis.Logout;
 import utilis.ProtectScreen;
 import view.AdminHome.Home;
 import view.Login.Login;
@@ -312,15 +313,12 @@ public class StudentScreen_Home extends javax.swing.JFrame {
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         // TODO add your handling code here:
-        Global.idLogin = 0;
-        this.dispose();
-        Login loginScreen = new Login();
-        loginScreen = (Login) CenterScreen.centerWindow(loginScreen);
-        loginScreen.show();
+        Logout.execute(this);
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void btnChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePassActionPerformed
         // TODO add your handling code here:
+        this.dispose();
         ChangePassScreen changePassScreen = new ChangePassScreen();
         changePassScreen = (ChangePassScreen) CenterScreen.centerWindow(changePassScreen);
         changePassScreen.setTitle("Đổi mật khẩu sinh viên");

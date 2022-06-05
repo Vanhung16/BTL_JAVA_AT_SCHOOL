@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import models.NhomMon;
 import utilis.CenterScreen;
 import utilis.Global;
+import utilis.Logout;
 import utilis.ProtectScreen;
 import view.AdminKhoa.KhoaScreen;
 import view.AdminQLGV.QLGVScreen;
@@ -313,7 +314,7 @@ public class Home extends javax.swing.JFrame {
 
     private void btnGiaoVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiaoVienActionPerformed
         // TODO add your handling code here:
-        this.dispose();        
+        this.dispose();
         QLGVScreen gVScreen = new QLGVScreen();
         gVScreen = (QLGVScreen) CenterScreen.centerWindow(gVScreen);
         gVScreen.show();
@@ -349,16 +350,12 @@ public class Home extends javax.swing.JFrame {
         KhoaScreen khoaScreen = new KhoaScreen();
         khoaScreen = (KhoaScreen) CenterScreen.centerWindow(khoaScreen);
         khoaScreen.show();
-        
+
     }//GEN-LAST:event_btnQLKhoaActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-        Global.idLogin = 0;
-        this.dispose();
-        Login loginScreen = new Login();
-        loginScreen = (Login) CenterScreen.centerWindow(loginScreen);
-        loginScreen.show();
+        Logout.execute(this);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnQLMH1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLMH1ActionPerformed

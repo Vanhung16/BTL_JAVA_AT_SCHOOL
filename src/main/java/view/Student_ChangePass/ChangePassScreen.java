@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 import utilis.BackHome;
 import utilis.CenterScreen;
 import utilis.Global;
+import utilis.Logout;
 import utilis.ProtectScreen;
 import view.Login.Login;
 
@@ -111,7 +112,8 @@ public class ChangePassScreen extends javax.swing.JFrame {
             }
         });
 
-        btnBack.setText("Đóng");
+        btnBack.setText("Quay lại");
+        btnBack.setActionCommand("Quay lại");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
@@ -139,7 +141,7 @@ public class ChangePassScreen extends javax.swing.JFrame {
                             .addComponent(txtreNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtOldPass, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(354, Short.MAX_VALUE))
+                .addContainerGap(271, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,11 +158,11 @@ public class ChangePassScreen extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtreNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(96, 96, 96)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AccepChangePass)
                     .addComponent(btnBack))
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -191,10 +193,7 @@ public class ChangePassScreen extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-//        BackHome
         BackHome.client(this);
-
-
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void AccepChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccepChangePassActionPerformed
@@ -203,42 +202,24 @@ public class ChangePassScreen extends javax.swing.JFrame {
         String newPass = txtNewPass.getText();
         String reNewPass = txtreNewPass.getText();
 
-
         if (oldPass.equals("") || newPass.equals("") || reNewPass.equals("")) {
             JOptionPane.showMessageDialog(null, "Các trường không được để trống", "Thông báo", 2);
         }
         if (!oldPass.equals(currentpass)) {
             JOptionPane.showMessageDialog(null, "Mật khẩu hiện tại sai", "Thông báo", 2);
-        }else{
+        } else {
             if (!newPass.equals(reNewPass)) {
                 JOptionPane.showMessageDialog(null, "Nhập lại mật khẩu mới không chính xác", "Thông báo", 2);
             } else {
-                String sql = " UPDATE sinh_vien SET `password`= '" + newPass + "' WHERE id = " + Global.idLogin;
+                String sql = "UPDATE sinh_vien SET `password`= '" + newPass + "' WHERE id = " + Global.idLogin;
 
                 services.Services.post(sql);
-                Global.idLogin = 0;
-                this.dispose();
-                Login loginScreen = new Login();
-                loginScreen = (Login) CenterScreen.centerWindow(loginScreen);
-                loginScreen.show();
+                Logout.execute(this);
             }
         }
     }//GEN-LAST:event_AccepChangePassActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
-//        idSinhVien = Global.idLogin;
-//        ResultSet rs = null;
-//        try {
-//            String sql = "SELECT password FROM `sinh_vien` WHERE id = " + idSinhVien;
-//
-//            rs = services.Services.get(sql);
-//            currentpass = rs.getString("password");
-//        System.out.println(currentpass);
-//
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }
 
 
     }//GEN-LAST:event_formWindowOpened
