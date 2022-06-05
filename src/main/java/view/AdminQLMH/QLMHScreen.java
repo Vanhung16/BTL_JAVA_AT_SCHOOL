@@ -15,7 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import models.MonHoc;
-import utilis.BackHomeAdmin;
+import utilis.BackHome;
 import utilis.CenterScreen;
 import utilis.ProtectScreen;
 
@@ -226,7 +226,7 @@ public class QLMHScreen extends javax.swing.JFrame {
 
     private void btnBackHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackHomeActionPerformed
         // TODO add your handling code here:
-        BackHomeAdmin.execute(this);
+        BackHome.admin(this);
     }//GEN-LAST:event_btnBackHomeActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

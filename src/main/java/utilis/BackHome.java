@@ -6,17 +6,25 @@ package utilis;
 
 import java.awt.Window;
 import view.AdminHome.Home;
+import view.StudentHome.StudentScreen_Home;
 
 /**
  *
  * @author XuanHoang
  */
-public class BackHomeAdmin {
+public class BackHome {
 
-    public static void execute(Window frame) {
+    public static void admin(Window frame) {
         frame.dispose();
         Home homeScreen = new Home();
         homeScreen = (Home) CenterScreen.centerWindow(homeScreen);
         homeScreen.show();
+    }
+    
+    public static void client(Window frame){
+        frame.dispose();
+        StudentScreen_Home home = new StudentScreen_Home();
+        home = (StudentScreen_Home) CenterScreen.centerWindow(home);
+        home.show();
     }
 }

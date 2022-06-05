@@ -55,7 +55,7 @@ public class StudentScreen_Home extends javax.swing.JFrame {
                     lbNienKhoa.setText(rssv.getString("nien_khoa"));
                     lbKhoa.setText(rssv.getString("ten_khoa"));
 
-                } 
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -90,7 +90,6 @@ public class StudentScreen_Home extends javax.swing.JFrame {
         lbNameLogin = new javax.swing.JLabel();
         btnCloseScreen = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,6 +97,7 @@ public class StudentScreen_Home extends javax.swing.JFrame {
 
         btnDangKyMon.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnDangKyMon.setText("Đăng ký môn học");
+        btnDangKyMon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDangKyMon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDangKyMonActionPerformed(evt);
@@ -106,6 +106,7 @@ public class StudentScreen_Home extends javax.swing.JFrame {
 
         btnXemDSDangKy.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnXemDSDangKy.setText("Các môn đã đăng ký");
+        btnXemDSDangKy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnXemDSDangKy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXemDSDangKyActionPerformed(evt);
@@ -114,6 +115,7 @@ public class StudentScreen_Home extends javax.swing.JFrame {
 
         btnChangePass.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnChangePass.setText("Đổi mặt khẩu ");
+        btnChangePass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnChangePass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnChangePassActionPerformed(evt);
@@ -122,6 +124,7 @@ public class StudentScreen_Home extends javax.swing.JFrame {
 
         btnLogOut.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnLogOut.setText("Đăng xuất");
+        btnLogOut.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogOutActionPerformed(evt);
@@ -241,26 +244,22 @@ public class StudentScreen_Home extends javax.swing.JFrame {
 
         btnCloseScreen.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnCloseScreen.setText("Đóng");
+        btnCloseScreen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCloseScreen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCloseScreenActionPerformed(evt);
             }
         });
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/StudentHome/images/219983.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 70, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 50, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -323,12 +322,17 @@ public class StudentScreen_Home extends javax.swing.JFrame {
     private void btnChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePassActionPerformed
         // TODO add your handling code here:
         ChangePassScreen changePassScreen = new ChangePassScreen();
+        changePassScreen = (ChangePassScreen) CenterScreen.centerWindow(changePassScreen);
+        changePassScreen.setTitle("Đổi mật khẩu sinh viên");
         changePassScreen.setVisible(true);
+
     }//GEN-LAST:event_btnChangePassActionPerformed
 
     private void btnXemDSDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemDSDangKyActionPerformed
         // TODO add your handling code here:
         ChiTietDangKy chiTietDangKy = new ChiTietDangKy();
+        chiTietDangKy = (ChiTietDangKy) CenterScreen.centerWindow(chiTietDangKy);
+        chiTietDangKy.setTitle("Đăng kí môn");
         chiTietDangKy.setVisible(true);
     }//GEN-LAST:event_btnXemDSDangKyActionPerformed
 
@@ -390,7 +394,6 @@ public class StudentScreen_Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

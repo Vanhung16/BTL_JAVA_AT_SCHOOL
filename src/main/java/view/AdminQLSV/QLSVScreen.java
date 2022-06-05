@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import models.Khoa;
 import models.SinhVien;
-import utilis.BackHomeAdmin;
+import utilis.BackHome;
 import utilis.CenterScreen;
 import view.AdminQLMH.QLMHScreen;
 
@@ -261,7 +261,7 @@ public class QLSVScreen extends javax.swing.JFrame {
 
     private void btnBackHomeAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackHomeAdminActionPerformed
         // TODO add your handling code here:
-        BackHomeAdmin.execute(this);
+        BackHome.admin(this);
 
     }//GEN-LAST:event_btnBackHomeAdminActionPerformed
 
