@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 05, 2022 at 03:59 AM
+-- Generation Time: Jun 05, 2022 at 06:05 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -63,7 +63,8 @@ INSERT INTO `giao_vien` (`id`, `name`, `address`, `phone`) VALUES
 (1, 'Nguyễn Văn Hùng', 'Hà Nội', '033333333'),
 (2, 'Đoàn Quốc Cường', 'Thái Bình', '033333222'),
 (3, 'Nguyễn Xuân Hoàng', 'Bắc Giang', '033222333'),
-(4, 'Nguyễn Mạnh Hiếu', 'Hà Nội', '');
+(4, 'Nguyễn Mạnh Hiếu', 'Hà Nội', ''),
+(14, 'Nguyễn Thị B', 'Hà Nội', '0123456789');
 
 -- --------------------------------------------------------
 
@@ -108,7 +109,9 @@ CREATE TABLE `mon_hoc` (
 INSERT INTO `mon_hoc` (`id`, `name`, `so_tin_chi`, `id_nhom`) VALUES
 (1, 'Cơ sở dữ liệu', 3, 1),
 (7, 'Lập trình C++', 30, 2),
-(8, 'Lập trình hướng đối tượng', 30, 2);
+(8, 'Lập trình hướng đối tượng', 30, 2),
+(10, 'Toán cao cấp 1', 45, 5),
+(11, 'Toán cao cấp 2', 45, 5);
 
 -- --------------------------------------------------------
 
@@ -145,18 +148,43 @@ CREATE TABLE `sinh_vien` (
   `name` varchar(255) NOT NULL,
   `nien_khoa` varchar(255) NOT NULL,
   `password` char(255) NOT NULL,
-  `id_khoa` int(11) NOT NULL
+  `id_khoa` int(11) NOT NULL,
+  `SDT` varchar(255) NOT NULL,
+  `diachi` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `sinh_vien`
 --
 
-INSERT INTO `sinh_vien` (`id`, `code`, `name`, `nien_khoa`, `password`, `id_khoa`) VALUES
-(3, '2019605000', 'NGUYỄN XUÂN HOÀNG', 'K14', '1', 1),
-(4, '2019605562', 'NGUYỄN VĂN HÙNG', 'K14', '1', 1),
-(6, '2019605001', 'NGUYỄN MẠNH HIẾU', 'K14', '1', 27),
-(9, '2019605002', 'NGUYỄN VĂN A', 'K14', '1', 4);
+INSERT INTO `sinh_vien` (`id`, `code`, `name`, `nien_khoa`, `password`, `id_khoa`, `SDT`, `diachi`) VALUES
+(3, '2019605000', 'NGUYỄN XUÂN HOÀNG', 'K14', '1', 1, '0912345678', 'BẮC GIANG'),
+(4, '2019605562', 'NGUYỄN VĂN HÙNG', 'K14', '1', 1, '0912345678', 'Hà Nội'),
+(6, '2019605001', 'NGUYỄN MẠNH HIẾU', 'K14', '1', 27, '', ''),
+(9, '2019605002', 'NGUYỄN VĂN A', 'K14', '1', 4, '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sv_tkbmh`
+--
+
+CREATE TABLE `sv_tkbmh` (
+  `id_sv` int(11) NOT NULL,
+  `id_tkbmh` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sv_tkbmh`
+--
+
+INSERT INTO `sv_tkbmh` (`id_sv`, `id_tkbmh`) VALUES
+(3, 1),
+(3, 2),
+(3, 4),
+(4, 1),
+(4, 2),
+(4, 4);
 
 -- --------------------------------------------------------
 
@@ -169,11 +197,20 @@ CREATE TABLE `tkb_mh` (
   `id_mon_hoc` int(11) NOT NULL,
   `min_sv` int(11) NOT NULL,
   `max_sv` int(11) NOT NULL,
-  `time_start` date NOT NULL,
+  `time_start` char(1) NOT NULL,
   `so_phong` varchar(255) NOT NULL,
   `id_giao_vien` int(11) NOT NULL,
   `so_tuan_hoc` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tkb_mh`
+--
+
+INSERT INTO `tkb_mh` (`id`, `id_mon_hoc`, `min_sv`, `max_sv`, `time_start`, `so_phong`, `id_giao_vien`, `so_tuan_hoc`) VALUES
+(1, 1, 10, 70, '2', '405 A9', 1, 15),
+(2, 7, 10, 70, '2', '406 A10', 3, 15),
+(4, 8, 10, 70, '2', '505 A10', 3, 15);
 
 -- --------------------------------------------------------
 
@@ -231,13 +268,22 @@ ALTER TABLE `nhom_mon`
 ALTER TABLE `sinh_vien`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `code` (`code`),
+  ADD UNIQUE KEY `name` (`name`),
   ADD KEY `id_khoa` (`id_khoa`);
+
+--
+-- Indexes for table `sv_tkbmh`
+--
+ALTER TABLE `sv_tkbmh`
+  ADD PRIMARY KEY (`id_sv`,`id_tkbmh`),
+  ADD KEY `id_tkbmh` (`id_tkbmh`);
 
 --
 -- Indexes for table `tkb_mh`
 --
 ALTER TABLE `tkb_mh`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_mon_hoc_2` (`id_mon_hoc`),
   ADD KEY `id_giao_vien` (`id_giao_vien`),
   ADD KEY `id_mon_hoc` (`id_mon_hoc`);
 
@@ -263,19 +309,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `giao_vien`
 --
 ALTER TABLE `giao_vien`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `khoa`
 --
 ALTER TABLE `khoa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `mon_hoc`
 --
 ALTER TABLE `mon_hoc`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `nhom_mon`
@@ -293,7 +339,7 @@ ALTER TABLE `sinh_vien`
 -- AUTO_INCREMENT for table `tkb_mh`
 --
 ALTER TABLE `tkb_mh`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `tkb_sv`
@@ -316,6 +362,13 @@ ALTER TABLE `mon_hoc`
 --
 ALTER TABLE `sinh_vien`
   ADD CONSTRAINT `sinh_vien_ibfk_1` FOREIGN KEY (`id_khoa`) REFERENCES `khoa` (`id`);
+
+--
+-- Constraints for table `sv_tkbmh`
+--
+ALTER TABLE `sv_tkbmh`
+  ADD CONSTRAINT `sv_tkbmh_ibfk_1` FOREIGN KEY (`id_sv`) REFERENCES `sinh_vien` (`id`),
+  ADD CONSTRAINT `sv_tkbmh_ibfk_2` FOREIGN KEY (`id_tkbmh`) REFERENCES `tkb_mh` (`id`);
 
 --
 -- Constraints for table `tkb_mh`
