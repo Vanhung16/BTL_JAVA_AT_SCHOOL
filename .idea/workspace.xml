@@ -23,14 +23,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ac3b946-b439-47bc-9cc4-12bd43e235b0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/quanlydangkymonhoc.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/quanlydangkymonhoc/DangKy.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/quanlydangkymonhoc/NewJFrame.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/quanlydangkymonhoc/NewJFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/Home.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/AdminHome/Home.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/AdminHome/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/Login.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/Login/Login.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/Login/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/QuanLyDangKyMonHoc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/QuanLyDangKyMonHoc.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/AdminQLGV/QLGVScreen.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/AdminQLGV/QLGVScreen.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/AdminQLGV/QLGVScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/AdminQLGV/QLGVScreen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +39,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -56,6 +59,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
@@ -80,7 +84,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1654143832702">

@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="QuanLyDangKyMonHoc" target="11" />
+      <module name="QuanLyDangKyMonHoc" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>
