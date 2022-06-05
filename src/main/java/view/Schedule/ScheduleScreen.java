@@ -375,7 +375,8 @@ public class ScheduleScreen extends javax.swing.JFrame {
             txtSoPhong.setText("");
             txtSoTuan.setText("");
         } catch (Exception e) {
-            System.out.println(e);
+           JOptionPane.showMessageDialog(this, "Môn học đã được tạo, hãy chọn môn khác",
+                    "Thông báo", JOptionPane.ERROR_MESSAGE);
         }
     }// GEN-LAST:event_btnAddItemActionPerformed
 

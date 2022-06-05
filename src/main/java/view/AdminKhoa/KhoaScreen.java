@@ -208,24 +208,21 @@ public class KhoaScreen extends javax.swing.JFrame {
 
     private void btnDeleteItemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnDeleteItemActionPerformed
         // TODO add your handling code here:
-        int row = tableKhoa.getSelectedRow();
-        // lấy id của khoa cần xóa
-        int idDelete = -1;
-        idDelete = (int) tableKhoa.getModel().getValueAt(row, 0);
-
-        if (idDelete == -1) {
-            JOptionPane.showMessageDialog(this, "Yêu cầu chọn khoa để xóa !",
-                    "ERROR", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
         try {
-            String sql = "DELETE FROM `khoa` WHERE id = " + idDelete;
-            services.Services.post(sql);
-            fetchData();
-        } catch (Exception ex) {
-            System.out.println(ex);
-            JOptionPane.showMessageDialog(this, "Khoa này đã có lớp, không thể xóa !",
+            int row = tableKhoa.getSelectedRow();
+            // lấy id của khoa cần xóa
+            int idDelete = -1;
+            idDelete = (int) tableKhoa.getModel().getValueAt(row, 0);
+            try {
+                String sql = "DELETE FROM `khoa` WHERE id = " + idDelete;
+                services.Services.post(sql);
+                fetchData();
+            } catch (Exception ex) {                
+                JOptionPane.showMessageDialog(this, "Khoa này đã có lớp, không thể xóa !",
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Yêu cầu chọn khoa để xóa !",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 

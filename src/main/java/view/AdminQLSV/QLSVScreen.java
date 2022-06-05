@@ -299,13 +299,7 @@ public class QLSVScreen extends javax.swing.JFrame {
         String nien_khoa = txtNienKhoa.getText();
         String password = txtPassword.getText();
         String ten_khoa = cbKhoa.getSelectedItem().toString();
-        int id_khoa = 0;
-        for (Khoa khoa : dataCB) {
-            if (ten_khoa.equals(khoa.getName())) {
-                id_khoa = khoa.getId();
-                break;
-            }
-        }
+        
         if (code.equals("") || name.equals("") || nien_khoa.equals("") || ten_khoa.equals("")) {
             JOptionPane.showMessageDialog(this, "Yêu cầu nhập đủ tất cả các trường !",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -319,10 +313,18 @@ public class QLSVScreen extends javax.swing.JFrame {
                 return;
             }
         }
+        int id_khoa = 0;
+        for (Khoa khoa : dataCB) {
+            if (ten_khoa.equals(khoa.getName())) {
+                id_khoa = khoa.getId();
+                break;
+            }
+        }
         try {
             String sql = "INSERT INTO `sinh_vien`(`code`, `name`, `nien_khoa`, `password`, `id_khoa`)"
                     + " VALUES ('" + code + "','" + name + "','" + nien_khoa + "','" + password + "','" + id_khoa + "')";
             services.Services.post(sql);
+            System.out.println("sql: "+sql);
             fetchData();
             txtName.setText("");
             txtCode.setText("");

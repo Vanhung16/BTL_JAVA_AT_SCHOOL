@@ -45,8 +45,9 @@ public class Home extends javax.swing.JFrame {
         PreparedStatement st;
         ResultSet rs;
         
-        String sql = "SELECT * FROM admin WHERE id = ?";
+        
         try {
+            String sql = "SELECT * FROM admin WHERE id = ?";
             st = connectDataBase.getConnection().prepareStatement(sql);
             st.setString(1, Global.idLogin + "");
             rs = st.executeQuery();

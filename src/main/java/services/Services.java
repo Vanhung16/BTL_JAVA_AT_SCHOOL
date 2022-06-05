@@ -48,12 +48,13 @@ public class Services {
         return rs;
     }
 
-    public static void post(String sql) {
+    public static void post(String sql) throws SQLException {
         PreparedStatement st;
         try {
             st = connectDataBase.getConnection().prepareStatement(sql);
             st.executeUpdate();
         } catch (SQLException ex) {
+            throw new SQLException();
         }
     }
 }

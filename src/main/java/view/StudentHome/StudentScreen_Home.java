@@ -320,6 +320,7 @@ public class StudentScreen_Home extends javax.swing.JFrame {
 
     private void btnXemDSDangKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemDSDangKyActionPerformed
         // TODO add your handling code here:
+        this.dispose();
         ChiTietDangKy chiTietDangKy = new ChiTietDangKy();
         chiTietDangKy = (ChiTietDangKy) CenterScreen.centerWindow(chiTietDangKy);
         chiTietDangKy.setTitle("Đăng kí môn");
@@ -328,8 +329,11 @@ public class StudentScreen_Home extends javax.swing.JFrame {
 
     private void btnDangKyMonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyMonActionPerformed
         // TODO add your handling code here:
+        this.dispose();
         DangKyScreen dangKyScreen = new DangKyScreen();
         dangKyScreen.setVisible(true);
+        dangKyScreen.setTitle("Đăng kí môn học");
+        dangKyScreen = (DangKyScreen)CenterScreen.centerWindow(dangKyScreen);
     }//GEN-LAST:event_btnDangKyMonActionPerformed
 
     /**

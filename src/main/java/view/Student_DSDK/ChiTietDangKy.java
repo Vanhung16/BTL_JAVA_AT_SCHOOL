@@ -5,6 +5,20 @@
  */
 package view.Student_DSDK;
 
+import TableView.TableTKBSV;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import models.Khoa;
+import models.TKBSV;
+import utilis.BackHome;
+import utilis.CenterScreen;
+import utilis.Global;
+import utilis.ProtectScreen;
+import view.AdminQLMH.QLMHScreen;
+
 /**
  *
  * @author Doan Cuong
@@ -14,8 +28,14 @@ public class ChiTietDangKy extends javax.swing.JFrame {
     /**
      * Creates new form ChiTietDangKy
      */
+    ArrayList<TKBSV> dsTKBSV = new ArrayList<>();
+
     public ChiTietDangKy() {
         initComponents();
+    }
+
+    public void LoadTable() {
+        tableDaDangKy.setModel(new TableTKBSV(dsTKBSV));
     }
 
     /**
@@ -28,14 +48,18 @@ public class ChiTietDangKy extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableDaDangKy = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        Huy = new javax.swing.JButton();
-        btnDongCT = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableDaDangKy.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -46,19 +70,16 @@ public class ChiTietDangKy extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableDaDangKy);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setText("Các môn đã đăng ký");
 
-        Huy.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        Huy.setText("Hủy đăng ký");
-
-        btnDongCT.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        btnDongCT.setText("Đóng");
-        btnDongCT.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnBack.setText("Quay lại");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDongCTActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -67,38 +88,61 @@ public class ChiTietDangKy extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(211, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBack)
+                .addGap(162, 162, 162))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(Huy)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnDongCT, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(162, 162, 162))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 702, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(92, Short.MAX_VALUE)
+                .addGap(19, 19, 19)
                 .addComponent(jLabel1)
                 .addGap(35, 35, 35)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Huy)
-                    .addComponent(btnDongCT))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addComponent(btnBack)
                 .addGap(26, 26, 26))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnDongCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDongCTActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_btnDongCTActionPerformed
+        BackHome.client(this);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        fetchData();
+    }//GEN-LAST:event_formWindowOpened
+    public void fetchData() {
+        // TODO add your handling code here:
+        String sql = "SELECT sinh_vien.name as \"ten_sv\", mon_hoc.name as \"ten_mon\", tkb_mh.so_phong as \"so_phong\", giao_vien.name as \"ten_gv\" FROM sv_tkbmh\n"
+                + "INNER JOIN sinh_vien ON sv_tkbmh.id_sv = sinh_vien.id\n"
+                + "INNER JOIN tkb_mh ON sv_tkbmh.id_tkbmh = tkb_mh.id\n"
+                + "INNER JOIN mon_hoc ON tkb_mh.id_mon_hoc = mon_hoc.id\n"
+                + "INNER JOIN giao_vien on tkb_mh.id_giao_vien = giao_vien.id WHERE sv_tkbmh.id_sv = " + Global.idLogin;
+        ResultSet rs = services.Services.get(sql);
+
+        dsTKBSV = new ArrayList<>();
+        try {
+            TKBSV x = null;
+            while (rs.next()) {
+                x = new TKBSV(rs.getString("ten_sv"), rs.getString("ten_mon"), rs.getString("so_phong"), rs.getString("ten_gv"));
+                dsTKBSV.add(x);
+            }
+            LoadTable();
+        } catch (SQLException ex) {
+            Logger.getLogger(QLMHScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -130,16 +174,18 @@ public class ChiTietDangKy extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChiTietDangKy().setVisible(true);
+                ChiTietDangKy ctdkScreen = new ChiTietDangKy();
+                ctdkScreen = (ChiTietDangKy) ProtectScreen.protectScreen(ctdkScreen);
+                ctdkScreen = (ChiTietDangKy) CenterScreen.centerWindow(ctdkScreen);
+                ctdkScreen.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Huy;
-    private javax.swing.JButton btnDongCT;
+    private javax.swing.JButton btnBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tableDaDangKy;
     // End of variables declaration//GEN-END:variables
 }

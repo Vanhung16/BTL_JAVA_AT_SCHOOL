@@ -13,12 +13,13 @@ import view.Login.Login;
  * @author XuanHoang
  */
 public class Logout {
+
     public static void execute(Window frame) {
         Global.idLogin = 0;
         frame.dispose();
         Login loginScreen = new Login();
         loginScreen = (Login) CenterScreen.centerWindow(loginScreen);
         loginScreen.show();
-         loginScreen.setTitle("Đăng nhập hệ thống");
+        loginScreen.setTitle("Đăng nhập hệ thống");
     }
 }
