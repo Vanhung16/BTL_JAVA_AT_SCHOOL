@@ -213,8 +213,12 @@ public class ChangePassScreen extends javax.swing.JFrame {
             } else {
                 String sql = "UPDATE sinh_vien SET `password`= '" + newPass + "' WHERE id = " + Global.idLogin;
 
-                services.Services.post(sql);
-                Logout.execute(this);
+                try {
+                    services.Services.post(sql);
+                    Logout.execute(this);
+                } catch (Exception e) {
+                }
+                
             }
         }
     }//GEN-LAST:event_AccepChangePassActionPerformed
