@@ -219,15 +219,18 @@ public class KhoaScreen extends javax.swing.JFrame {
             return;
         }
 
+        String sqlID = "SELECT `khoa`.`id` FROM khoa INNER JOIN sinh_vien ON khoa.id = sinh_vien.id_khoa";
+        ResultSet rs = services.Services.get(sqlID);
         try {
-            String sql = "DELETE FROM `khoa` WHERE id = " + idDelete;
-            services.Services.post(sql);
-            fetchData();
-        } catch (Exception ex) {
-            System.out.println(ex);
-            JOptionPane.showMessageDialog(this, "Khoa này đã có lớp, không thể xóa !",
-                    "ERROR", JOptionPane.ERROR_MESSAGE);
+            while(rs.next()){
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(KhoaScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
+        String sql = "DELETE FROM `khoa` WHERE id = " + idDelete;
+        services.Services.post(sql);
+        fetchData();
 
     }// GEN-LAST:event_btnDeleteItemActionPerformed
 
