@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import models.MonHoc;
+import models.NhomMon;
 import utilis.BackHome;
 import utilis.CenterScreen;
 import utilis.ProtectScreen;
@@ -29,6 +30,7 @@ public class QLMHScreen extends javax.swing.JFrame {
      * Creates new form QLMHScreen
      */
     ArrayList<MonHoc> dsMonHoc = new ArrayList<>();
+    ArrayList<NhomMon> dsNhomMon = new ArrayList<>();
     int dongchon = -1;
 
     public QLMHScreen() {
@@ -38,6 +40,22 @@ public class QLMHScreen extends javax.swing.JFrame {
 
     public void LoadTableMonHoc() {
         tableMonHoc.setModel(new TableMonHoc(dsMonHoc));
+
+        try {
+            String sql = "SELECT * FROM nhom_mon";
+            ResultSet rs = services.Services.get(sql);
+            NhomMon x = null;
+            while (rs.next()) {
+                x = new NhomMon(rs.getInt("id"), rs.getString("name"));
+                dsNhomMon.add(x);
+            }
+        } catch (Exception e) {
+
+        }
+
+        for (NhomMon nhomMon : dsNhomMon) {
+            cbNhomMon.addItem(nhomMon.getName());
+        }
     }
 
     /**
@@ -103,7 +121,6 @@ public class QLMHScreen extends javax.swing.JFrame {
         jLabel2.setText("Danh sách môn học");
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel3.setForeground(java.awt.Color.red);
         jLabel3.setText("Tên môn: ");
 
         txtName.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +130,6 @@ public class QLMHScreen extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel4.setForeground(java.awt.Color.red);
         jLabel4.setText("Số tín chỉ: ");
 
         txtSoTinChi.addActionListener(new java.awt.event.ActionListener() {
@@ -123,10 +139,7 @@ public class QLMHScreen extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel5.setForeground(java.awt.Color.red);
         jLabel5.setText("Nhóm môn học");
-
-        cbNhomMon.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnAdd.setText("Thêm môn học mới");
         btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -218,7 +231,7 @@ public class QLMHScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
@@ -263,10 +276,16 @@ public class QLMHScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         String name = txtName.getText();
         String so_tin_chi = txtSoTinChi.getText();
-//        String id_nhom = (String) cbNhomMon.getSelectedItem();
-        String id_nhom = "2";
+        String ten_nhom = (String) cbNhomMon.getSelectedItem();
+        int id_nhom = 0;
+        for (NhomMon nhomMon : dsNhomMon) {
+            if(ten_nhom.equals(nhomMon.getName())) {
+                id_nhom = nhomMon.getId();
+                break;
+            }
+        }
 
-        if (name.equals("") || so_tin_chi.equals("") || id_nhom.equals("")) {
+        if (name.equals("") || so_tin_chi.equals("") || ten_nhom.equals("")) {
             JOptionPane.showMessageDialog(this,
                     "Yêu cầu nhập đủ các trường !",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -339,7 +358,7 @@ public class QLMHScreen extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 QLMHScreen qlmhScreen = new QLMHScreen();
-                qlmhScreen = (QLMHScreen)ProtectScreen.protectScreen(qlmhScreen);
+//                qlmhScreen = (QLMHScreen) ProtectScreen.protectScreen(qlmhScreen);
                 qlmhScreen.setVisible(true);
                 qlmhScreen = (QLMHScreen) CenterScreen.centerWindow(qlmhScreen);
             }

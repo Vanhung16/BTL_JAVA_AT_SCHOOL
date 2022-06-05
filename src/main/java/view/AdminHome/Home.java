@@ -393,7 +393,7 @@ public class Home extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Home homeScreen = new Home();
-                homeScreen = (Home) ProtectScreen.protectScreen(homeScreen);
+//                homeScreen = (Home) ProtectScreen.protectScreen(homeScreen);
                 homeScreen.setVisible(true);
                 homeScreen.setTitle("Trang chủ");
                 homeScreen.setPreferredSize(new Dimension(800, 600));
