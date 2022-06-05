@@ -73,6 +73,10 @@ public class QLSVScreen extends javax.swing.JFrame {
         txtPassword = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         cbKhoa = new javax.swing.JComboBox<>();
+        txtSDT = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtDiaChi = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -154,6 +158,12 @@ public class QLSVScreen extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel9.setText("Số điện thoại");
+
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel10.setText("Địa chỉ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -173,32 +183,39 @@ public class QLSVScreen extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton2)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(lbName)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(44, 44, 44)
-                                    .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lbName)
+                                        .addComponent(jLabel3))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel7)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel5)
-                                            .addGap(18, 18, 18))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel6)
-                                            .addGap(51, 51, 51)))
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel5))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(txtNienKhoa)
-                                        .addComponent(cbKhoa, 0, 176, Short.MAX_VALUE))))
-                            .addComponent(jButton2))))
+                                        .addComponent(cbKhoa, 0, 176, Short.MAX_VALUE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel9)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel10)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -226,9 +243,17 @@ public class QLSVScreen extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -237,7 +262,7 @@ public class QLSVScreen extends javax.swing.JFrame {
                     .addComponent(btnDeleteItem)
                     .addComponent(clickCTSV)
                     .addComponent(btnBackHomeAdmin))
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addGap(31, 31, 31))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -256,10 +281,44 @@ public class QLSVScreen extends javax.swing.JFrame {
 
     private void clickCTSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickCTSVActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-        InforSV_Screen inforSV_Screen = new InforSV_Screen();
-        inforSV_Screen = (InforSV_Screen)CenterScreen.centerWindow(inforSV_Screen);
-        inforSV_Screen.setVisible(true);
+        int row = tableSinhVien.getSelectedRow();
+        // lấy id của sinh viên cần xem
+        int choise = -1;
+        choise = (int) tableSinhVien.getModel().getValueAt(row, 0);
+
+        if (choise == -1) {
+            JOptionPane.showMessageDialog(this, "Yêu cầu chọn sinh viên cần xem !",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            String sql = "SELECT `code`, sinh_vien.name, `nien_khoa`, `password`, khoa.name, `SDT`,"
+                    + " `diachi` FROM `sinh_vien`,`khoa` WHERE sinh_vien.id_khoa = khoa.id AND sinh_vien.id = " + choise;
+            ResultSet rs = services.Services.get(sql);
+            rs.next();
+            
+            SinhVien sinhVien = new SinhVien();
+            sinhVien.setCodeSV(rs.getString(1));
+            sinhVien.setHoTen(rs.getString(2));
+            sinhVien.setNien_Khoa(rs.getString(3));
+            sinhVien.setTenKhoa(rs.getString(5));
+            sinhVien.setSdt(rs.getString(6));
+            sinhVien.setDiachi(rs.getString(7));
+            
+            this.dispose();
+            InforSV_Screen inforSV_Screen = new InforSV_Screen(sinhVien);
+//            inforSV_Screen = (InforSV_Screen) ProtectScreen.protectScreen(inforSV_Screen);
+            inforSV_Screen = (InforSV_Screen) CenterScreen.centerWindow(inforSV_Screen);
+            inforSV_Screen.setTitle("Chi tiết sinh viên");
+            inforSV_Screen.setVisible(true);
+            
+           
+        } catch (Exception ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(this, "Lỗi",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_clickCTSVActionPerformed
 
     private void btnBackHomeAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackHomeAdminActionPerformed
@@ -299,8 +358,10 @@ public class QLSVScreen extends javax.swing.JFrame {
         String nien_khoa = txtNienKhoa.getText();
         String password = txtPassword.getText();
         String ten_khoa = cbKhoa.getSelectedItem().toString();
+        String sdt = txtSDT.getText();
+        String diachi = txtDiaChi.getText();
         
-        if (code.equals("") || name.equals("") || nien_khoa.equals("") || ten_khoa.equals("")) {
+        if (code.equals("") || name.equals("") || nien_khoa.equals("") || ten_khoa.equals("") || sdt.equals("") || diachi.equals("")) {
             JOptionPane.showMessageDialog(this, "Yêu cầu nhập đủ tất cả các trường !",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
             txtCode.requestFocus();
@@ -321,8 +382,8 @@ public class QLSVScreen extends javax.swing.JFrame {
             }
         }
         try {
-            String sql = "INSERT INTO `sinh_vien`(`code`, `name`, `nien_khoa`, `password`, `id_khoa`)"
-                    + " VALUES ('" + code + "','" + name + "','" + nien_khoa + "','" + password + "','" + id_khoa + "')";
+            String sql = "INSERT INTO `sinh_vien`(`code`, `name`, `nien_khoa`, `password`, `id_khoa`, `SDT`, `diachi`)"
+                    + " VALUES ('" + code + "','" + name + "','" + nien_khoa + "','" + password + "','" + id_khoa + "', '" + sdt + "','" + diachi + "')";
             services.Services.post(sql);
             System.out.println("sql: "+sql);
             fetchData();
@@ -331,6 +392,8 @@ public class QLSVScreen extends javax.swing.JFrame {
             txtPassword.setText("");
             txtNienKhoa.setText("");
             txtCode.requestFocus();
+            txtSDT.setText("");
+            txtDiaChi.setText("");
         } catch (Exception ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(this, ex,
@@ -396,7 +459,7 @@ public class QLSVScreen extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 QLSVScreen qlsvScreen = new QLSVScreen();
-                qlsvScreen = (QLSVScreen) ProtectScreen.protectScreen(qlsvScreen);
+//                qlsvScreen = (QLSVScreen) ProtectScreen.protectScreen(qlsvScreen);
                 qlsvScreen = (QLSVScreen) CenterScreen.centerWindow(qlsvScreen);
                 qlsvScreen.setVisible(true);
                 qlsvScreen.setTitle("Quản lý sinh viên");
@@ -411,19 +474,23 @@ public class QLSVScreen extends javax.swing.JFrame {
     private javax.swing.JButton clickCTSV;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbName;
     private javax.swing.JTable tableSinhVien;
     private javax.swing.JTextField txtCode;
+    private javax.swing.JTextField txtDiaChi;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtNienKhoa;
     private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtSDT;
     // End of variables declaration//GEN-END:variables
 
     private void showComboBoxData() {
