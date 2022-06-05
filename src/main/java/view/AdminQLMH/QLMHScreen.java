@@ -6,15 +6,25 @@
 package view.AdminQLMH;
 
 import TableView.TableMonHoc;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import models.MonHoc;
 import models.NhomMon;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import utilis.BackHome;
 import utilis.CenterScreen;
 import utilis.ProtectScreen;
+import utilis.ghiFile;
 
 /**
  *
@@ -77,6 +87,7 @@ public class QLMHScreen extends javax.swing.JFrame {
         cbNhomMon = new javax.swing.JComboBox<>();
         btnAdd = new javax.swing.JButton();
         btnDeleteItem = new javax.swing.JButton();
+        btnExport = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -154,6 +165,13 @@ public class QLMHScreen extends javax.swing.JFrame {
             }
         });
 
+        btnExport.setText("Xuất file excel");
+        btnExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -163,6 +181,8 @@ public class QLMHScreen extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnDeleteItem)
+                        .addGap(236, 236, 236)
+                        .addComponent(btnExport)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnBackHome, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,7 +229,8 @@ public class QLMHScreen extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBackHome)
-                    .addComponent(btnDeleteItem))
+                    .addComponent(btnDeleteItem)
+                    .addComponent(btnExport))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
@@ -323,6 +344,69 @@ public class QLMHScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDeleteItemActionPerformed
 
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
+
+        try {
+            XSSFWorkbook wordkbook = new XSSFWorkbook();
+            XSSFSheet sheet = wordkbook.createSheet("danhsach");
+            XSSFRow row = null;
+            Cell cell = null;
+            row = sheet.createRow(2);
+            cell = row.createCell(0, CellType.STRING);
+            cell.setCellValue("DANH SÁCH CÁC MÔN HỌC");
+
+            row = sheet.createRow(3);
+            cell = row.createCell(0, CellType.STRING);
+            cell.setCellValue("Mã môn học");
+
+            cell = row.createCell(1, CellType.STRING);
+            cell.setCellValue("Tên môn học");
+
+            cell = row.createCell(2, CellType.STRING);
+            cell.setCellValue("Số tín chỉ");
+
+            cell = row.createCell(3, CellType.STRING);
+            cell.setCellValue("Nhóm môn học");
+
+            for (int i = 0; i < dsMonHoc.size(); i++) {
+                //Modelbook book =arr.get(i);
+                row = sheet.createRow(4 + i);
+
+                cell = row.createCell(0, CellType.STRING);
+                cell.setCellValue(dsMonHoc.get(i).getId());
+
+                cell = row.createCell(1, CellType.STRING);
+                cell.setCellValue(dsMonHoc.get(i).getName());
+
+                cell = row.createCell(2, CellType.STRING);
+                cell.setCellValue(dsMonHoc.get(i).getSotc());
+
+                cell = row.createCell(3, CellType.STRING);
+                cell.setCellValue(dsMonHoc.get(i).getnameNhom());
+            }
+
+            File f = new File("./DSMH.xlsx");
+            try {
+                FileOutputStream fis = new FileOutputStream(f);
+                wordkbook.write(fis);
+                fis.close();
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+//            String path = "./DSMH.xlsx";
+//            ghiFile.GhiFile(path, wordkbook);
+
+            JOptionPane.showMessageDialog(this, "Xuat file thanh cong");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Loi mo file");
+        }
+    }//GEN-LAST:event_btnExportActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -365,6 +449,7 @@ public class QLMHScreen extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBackHome;
     private javax.swing.JButton btnDeleteItem;
+    private javax.swing.JButton btnExport;
     private javax.swing.JComboBox<String> cbNhomMon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

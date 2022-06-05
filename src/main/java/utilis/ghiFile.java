@@ -20,16 +20,17 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class ghiFile {
     public static void GhiFile(String path, XSSFWorkbook workbook){
-        File file = new File("path");
-        try {
-            
-            FileOutputStream fos = new FileOutputStream(file);
-            workbook.write(fos);
-            fos.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException ex) {
-            Logger.getLogger(ghiFile.class.getName()).log(Level.SEVERE, null, ex);
-        }
+          File f = new File("path");
+            try {
+                FileOutputStream fis = new FileOutputStream(f);
+                workbook.write(fis);
+                fis.close();
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
     }
+  
 }

@@ -296,7 +296,7 @@ public class QLGVScreen extends javax.swing.JFrame {
             Cell cell = null;
             row = sheet.createRow(2);
             cell = row.createCell(0, CellType.STRING);
-            cell.setCellValue("DANH SACH GIA SACH");
+            cell.setCellValue("DANH SÁCH GIÁO VIÊN");
 
             row = sheet.createRow(3);
             cell = row.createCell(0, CellType.STRING);
@@ -339,6 +339,8 @@ public class QLGVScreen extends javax.swing.JFrame {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+//                String path = "./DSGV.xlsx";
+//                ghiFile.GhiFile(path, wordkbook);
 
             JOptionPane.showMessageDialog(this, "Xuat file thanh cong");
 

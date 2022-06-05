@@ -54,6 +54,8 @@
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="btnDeleteItem" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="236" max="-2" attributes="0"/>
+                          <Component id="btnExport" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="btnBackHome" min="-2" pref="91" max="-2" attributes="0"/>
                       </Group>
@@ -113,6 +115,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnBackHome" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnDeleteItem" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnExport" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="34" max="32767" attributes="0"/>
               </Group>
@@ -247,6 +250,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteItemActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnExport">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t file excel"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExportActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
