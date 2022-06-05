@@ -19,6 +19,7 @@
     + Đăng kí môn học
     + Xem thông tin sinh viên
     + Đăng xuất
+-  Xuất file excel báo cáo
 
 ## Công nghệ sử dụng
 - Java Core
