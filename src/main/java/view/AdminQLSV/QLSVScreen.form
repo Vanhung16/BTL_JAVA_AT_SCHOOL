@@ -48,7 +48,7 @@
                       <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="jButton1" min="-2" pref="73" max="-2" attributes="0"/>
+                          <Component id="btnDeleteItem" min="-2" pref="73" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="226" max="-2" attributes="0"/>
                           <Component id="clickCTSV" min="-2" pref="116" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="221" max="-2" attributes="0"/>
@@ -138,7 +138,7 @@
                   <Component id="jScrollPane1" min="-2" pref="245" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnDeleteItem" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="clickCTSV" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnBackHomeAdmin" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -180,13 +180,16 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnDeleteItem">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Times New Roman" size="14" style="0"/>
             </Property>
             <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteItemActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="clickCTSV">
           <Properties>
@@ -280,12 +283,7 @@
         <Component class="javax.swing.JComboBox" name="cbKhoa">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>

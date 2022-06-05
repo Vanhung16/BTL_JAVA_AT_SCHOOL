@@ -11,13 +11,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import models.Khoa;
 import models.SinhVien;
 import utilis.BackHomeAdmin;
 import utilis.CenterScreen;
+import view.AdminQLMH.QLMHScreen;
 
 /**
  *
@@ -29,11 +31,12 @@ public class QLSVScreen extends javax.swing.JFrame {
      * Creates new form QLSVScreen
      */
     ArrayList<SinhVien> dsSinhVien = new ArrayList<>();
+    List<Khoa> dataCB = new ArrayList<>();
     int dongchon = -1;
 
     public QLSVScreen() {
         initComponents();
-
+        showComboBoxData();
         LoadTableSinhVien();
     }
 
@@ -54,7 +57,7 @@ public class QLSVScreen extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableSinhVien = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btnDeleteItem = new javax.swing.JButton();
         clickCTSV = new javax.swing.JButton();
         btnBackHomeAdmin = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -94,8 +97,13 @@ public class QLSVScreen extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableSinhVien);
 
-        jButton1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jButton1.setText("Xóa");
+        btnDeleteItem.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnDeleteItem.setText("Xóa");
+        btnDeleteItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteItemActionPerformed(evt);
+            }
+        });
 
         clickCTSV.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         clickCTSV.setText("Xem Chi Tiết");
@@ -139,7 +147,6 @@ public class QLSVScreen extends javax.swing.JFrame {
             }
         });
 
-        cbKhoa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbKhoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbKhoaActionPerformed(evt);
@@ -157,7 +164,7 @@ public class QLSVScreen extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDeleteItem, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(226, 226, 226)
                         .addComponent(clickCTSV, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(221, 221, 221)
@@ -226,7 +233,7 @@ public class QLSVScreen extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnDeleteItem)
                     .addComponent(clickCTSV)
                     .addComponent(btnBackHomeAdmin))
                 .addContainerGap(67, Short.MAX_VALUE))
@@ -260,37 +267,98 @@ public class QLSVScreen extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
+        fetchData();
+    }//GEN-LAST:event_formWindowOpened
+
+    public void fetchData() {
+        dsSinhVien = new ArrayList<>();
         PreparedStatement st;
         ResultSet rs;
-        String query = "SELECT sinh_vien.code, sinh_vien.name, sinh_vien.nien_khoa,khoa.name as 'tenKhoa' FROM sinh_vien INNER JOIN khoa ON sinh_vien.id_khoa = khoa.id";
+        String query = "SELECT sinh_vien.id,  sinh_vien.code, sinh_vien.name, sinh_vien.nien_khoa,khoa.name as 'tenKhoa' "
+                + "FROM sinh_vien INNER JOIN khoa ON sinh_vien.id_khoa = khoa.id";
         try {
             st = connectDataBase.getConnection().prepareStatement(query);
             rs = st.executeQuery();
             SinhVien x = null;
             while (rs.next()) {
-                x = new SinhVien(rs.getString("sinh_vien.code"), rs.getString("sinh_vien.name"), rs.getString("sinh_vien.nien_khoa"), rs.getString("tenKhoa"));
+                x = new SinhVien(rs.getInt("sinh_vien.id"), rs.getString("sinh_vien.code"), rs.getString("sinh_vien.name"), rs.getString("sinh_vien.nien_khoa"), rs.getString("tenKhoa"));
                 dsSinhVien.add(x);
             }
             LoadTableSinhVien();
         } catch (SQLException ex) {
             Logger.getLogger(QLSVScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-    }//GEN-LAST:event_formWindowOpened
-
+    }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         String code = txtCode.getText();
         String name = txtName.getText();
         String nien_khoa = txtNienKhoa.getText();
         String password = txtPassword.getText();
-
+        String ten_khoa = cbKhoa.getSelectedItem().toString();
+        int id_khoa = 0;
+        for (Khoa khoa : dataCB) {
+            if (ten_khoa.equals(khoa.getName())) {
+                id_khoa = khoa.getId();
+                break;
+            }
+        }
+        if (code.equals("") || name.equals("") || nien_khoa.equals("") || ten_khoa.equals("")) {
+            JOptionPane.showMessageDialog(this, "Yêu cầu nhập đủ tất cả các trường !",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+            txtCode.requestFocus();
+            return;
+        }
+        for (SinhVien sinhVien : dsSinhVien) {
+            if (code.equals(sinhVien.getCodeSV())) {
+                JOptionPane.showMessageDialog(this, "Mã sinh viên đã tồn tại, nhập MSV khác !",
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+        try {
+            String sql = "INSERT INTO `sinh_vien`(`code`, `name`, `nien_khoa`, `password`, `id_khoa`)"
+                    + " VALUES ('" + code + "','" + name + "','" + nien_khoa + "','" + password + "','" + id_khoa + "')";
+            services.Services.post(sql);
+            fetchData();
+            txtName.setText("");
+            txtCode.setText("");
+            txtPassword.setText("");
+            txtNienKhoa.setText("");
+            txtCode.requestFocus();
+        } catch (Exception ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(this, ex,
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void cbKhoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKhoaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbKhoaActionPerformed
+
+    private void btnDeleteItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteItemActionPerformed
+        try {
+            // TODO add your handling code here:
+            int row = tableSinhVien.getSelectedRow();
+            // lấy id của khoa cần xóa
+            int idDelete;
+            idDelete = (int) tableSinhVien.getModel().getValueAt(row, 0);
+            try {
+                String sql = "DELETE FROM `sinh_vien` WHERE id = " + idDelete;
+                services.Services.post(sql);
+                fetchData();
+            } catch (Exception ex) {
+                System.out.println(ex);
+                JOptionPane.showMessageDialog(this, "Khoa này đã có lớp, không thể xóa !",
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Yêu cầu chọn sinh Vien để xóa !",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnDeleteItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -326,17 +394,15 @@ public class QLSVScreen extends javax.swing.JFrame {
                 qlsvScreen = (QLSVScreen) CenterScreen.centerWindow(qlsvScreen);
                 qlsvScreen.setVisible(true);
                 qlsvScreen.setTitle("Quản lý sinh viên");
-                
-                String s1[] = { "Jalpaiguri", "Mumbai", "Noida", "Kolkata", "New Delhi" };
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBackHomeAdmin;
+    private javax.swing.JButton btnDeleteItem;
     private javax.swing.JComboBox<String> cbKhoa;
     private javax.swing.JButton clickCTSV;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -353,4 +419,25 @@ public class QLSVScreen extends javax.swing.JFrame {
     private javax.swing.JTextField txtNienKhoa;
     private javax.swing.JTextField txtPassword;
     // End of variables declaration//GEN-END:variables
+
+    private void showComboBoxData() {
+
+        String sql = "SELECT * FROM khoa";
+        ResultSet rs = services.Services.get(sql);
+
+        try {
+
+            Khoa x = null;
+            while (rs.next()) {
+                x = new Khoa(rs.getInt("id"), rs.getString("name"));
+                dataCB.add(x);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(QLMHScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        for (Khoa khoa : dataCB) {
+            cbKhoa.addItem(khoa.getName());
+        }
+    }
 }

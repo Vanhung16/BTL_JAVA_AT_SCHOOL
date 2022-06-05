@@ -14,8 +14,8 @@ import models.SinhVien;
  */
 public class TableSinhVien extends AbstractTableModel {
 
-    private String heading[] = {"Mã sinh viên", "Họ và tên", "Khóa", "Tên Khoa"};
-    private Class classes[] = {String.class, String.class, String.class, String.class};
+    private String heading[] = {"Id", "Mã sinh viên", "Họ và tên", "Khóa", "Tên Khoa"};
+    private Class classes[] = {String.class, String.class, String.class, String.class, String.class};
 
     ArrayList<SinhVien> list = new ArrayList<SinhVien>();
 
@@ -37,21 +37,25 @@ public class TableSinhVien extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch (columnIndex) {
             case 0:
-                return list.get(rowIndex).getCodeSV();
+                return list.get(rowIndex).getId();
             case 1:
-                return list.get(rowIndex).getHoTen();
+                return list.get(rowIndex).getCodeSV();
             case 2:
-                return list.get(rowIndex).getNien_Khoa();
+                return list.get(rowIndex).getHoTen();
             case 3:
+                return list.get(rowIndex).getNien_Khoa();
+            case 4:
                 return list.get(rowIndex).getTenKhoa();
             default:
                 return null;
         }
     }
-    public Class getColumnClass(int columnIndex){
+
+    public Class getColumnClass(int columnIndex) {
         return classes[columnIndex];
     }
-    public String getColumnName(int column){
+
+    public String getColumnName(int column) {
         return heading[column];
     }
 
