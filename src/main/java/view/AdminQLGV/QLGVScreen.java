@@ -6,6 +6,10 @@
 package view.AdminQLGV;
 
 import TableView.TableGiaoVien;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,9 +17,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import models.GiaoVien;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import services.Services;
 import utilis.BackHome;
 import utilis.CenterScreen;
+import utilis.ProtectScreen;
+import utilis.ghiFile;
 
 /**
  *
@@ -62,6 +73,7 @@ public class QLGVScreen extends javax.swing.JFrame {
         txtPhone = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        btnInFile = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -121,6 +133,13 @@ public class QLGVScreen extends javax.swing.JFrame {
             }
         });
 
+        btnInFile.setText("In");
+        btnInFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInFileActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -136,6 +155,8 @@ public class QLGVScreen extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnDelete)
+                                .addGap(233, 233, 233)
+                                .addComponent(btnInFile, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnBackHome))
                             .addComponent(jLabel2)
@@ -180,7 +201,8 @@ public class QLGVScreen extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBackHome)
-                    .addComponent(btnDelete))
+                    .addComponent(btnDelete)
+                    .addComponent(btnInFile))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
@@ -260,6 +282,66 @@ public class QLGVScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void btnInFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInFileActionPerformed
+        try {
+            XSSFWorkbook wordkbook = new XSSFWorkbook();
+            XSSFSheet sheet = wordkbook.createSheet("danhsach");
+            XSSFRow row = null;
+            Cell cell = null;
+            row = sheet.createRow(2);
+            cell = row.createCell(0, CellType.STRING);
+            cell.setCellValue("DANH SACH GIA SACH");
+
+            row = sheet.createRow(3);
+            cell = row.createCell(0, CellType.STRING);
+            cell.setCellValue("Mã giáo viên");
+
+            cell = row.createCell(1, CellType.STRING);
+            cell.setCellValue("Tên Giáo viên");
+
+            cell = row.createCell(2, CellType.STRING);
+            cell.setCellValue("Địa chỉ");
+
+            cell = row.createCell(3, CellType.STRING);
+            cell.setCellValue("Số điện thoại");
+
+            for (int i = 0; i < dsGiaoVien.size(); i++) {
+                //Modelbook book =arr.get(i);
+                row = sheet.createRow(4 + i);
+
+                cell = row.createCell(0, CellType.STRING);
+                cell.setCellValue(dsGiaoVien.get(i).getId());
+
+                cell = row.createCell(1, CellType.STRING);
+                cell.setCellValue(dsGiaoVien.get(i).getName());
+
+                cell = row.createCell(2, CellType.STRING);
+                cell.setCellValue(dsGiaoVien.get(i).getAddress());
+
+                cell = row.createCell(3, CellType.STRING);
+                cell.setCellValue(dsGiaoVien.get(i).getPhone());
+            }
+
+            File f = new File("C:\\Users\\Admin\\Desktop\\btl_java\\BTL_JAVA_2022_LASTEST_VERSION\\DSGV.xlsx");
+            try {
+                FileOutputStream fis = new FileOutputStream(f);
+                wordkbook.write(fis);
+                fis.close();
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+            JOptionPane.showMessageDialog(this, "in thanh cong C:\\Users\\Admin\\Desktop\\btl_java\\BTL_JAVA_2022_LASTEST_VERSION\\DSGV.xlsx");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Loi mo file");
+        }
+    }//GEN-LAST:event_btnInFileActionPerformed
+
     private void formWindowOpened(java.awt.event.WindowEvent evt) {// GEN-FIRST:event_formWindowOpened
         fetchData();
     }// GEN-LAST:event_formWindowOpened
@@ -325,6 +407,7 @@ public class QLGVScreen extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 QLGVScreen qlgvScreen = new QLGVScreen();
+                qlgvScreen = (QLGVScreen) ProtectScreen.protectScreen(qlgvScreen);
                 qlgvScreen.setVisible(true);
                 qlgvScreen = (QLGVScreen) CenterScreen.centerWindow(qlgvScreen);
             }
@@ -335,6 +418,7 @@ public class QLGVScreen extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBackHome;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnInFile;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
