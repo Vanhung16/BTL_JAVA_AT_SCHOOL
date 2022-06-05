@@ -6,6 +6,10 @@
 package view.Schedule;
 
 import TableView.TableTKBMH;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,6 +19,11 @@ import javax.swing.JOptionPane;
 import models.GiaoVien;
 import models.MonHoc;
 import models.TKBMH;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import services.Services;
 import utilis.BackHome;
 import utilis.CenterScreen;
@@ -113,6 +122,7 @@ public class ScheduleScreen extends javax.swing.JFrame {
         txtSoTuan = new javax.swing.JTextField();
         txtTimeStart = new javax.swing.JTextField();
         btnAddItem = new javax.swing.JButton();
+        btnExport = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -191,6 +201,13 @@ public class ScheduleScreen extends javax.swing.JFrame {
             }
         });
 
+        btnExport.setText("Xuấ file excel");
+        btnExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -200,6 +217,8 @@ public class ScheduleScreen extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnDeleteItem, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(btnExport)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -283,12 +302,97 @@ public class ScheduleScreen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDeleteItem)
-                    .addComponent(btnBack))
+                    .addComponent(btnBack)
+                    .addComponent(btnExport))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
+        // TODO add your handling code here:
+        try {
+            XSSFWorkbook wordkbook = new XSSFWorkbook();
+            XSSFSheet sheet = wordkbook.createSheet("danhsach");
+            XSSFRow row = null;
+            Cell cell = null;
+            row = sheet.createRow(2);
+            cell = row.createCell(0, CellType.STRING);
+            cell.setCellValue("DANH SÁCH THỜI KHÓA BIỂU CÁC MÔN");
+
+            row = sheet.createRow(3);
+            cell = row.createCell(0, CellType.STRING);
+            cell.setCellValue("ID");
+
+            cell = row.createCell(1, CellType.STRING);
+            cell.setCellValue("Tên môn");
+
+            cell = row.createCell(2, CellType.STRING);
+            cell.setCellValue("Số HS tối thiểu");
+
+            cell = row.createCell(3, CellType.STRING);
+            cell.setCellValue("Số HS tối đa");
+
+            cell = row.createCell(4, CellType.STRING);
+            cell.setCellValue("Thời gian bắt đầu");
+
+            cell = row.createCell(5, CellType.STRING);
+            cell.setCellValue("Số phòng");
+
+            cell = row.createCell(6, CellType.STRING);
+            cell.setCellValue("Tên giáo viên");
+            cell = row.createCell(6, CellType.STRING);
+            cell.setCellValue("Tên số tuần học");
+
+            for (int i = 0; i < dsTKBMH.size(); i++) {
+                //Modelbook book =arr.get(i);
+                row = sheet.createRow(4 + i);
+
+                cell = row.createCell(0, CellType.STRING);
+                cell.setCellValue(dsTKBMH.get(i).getId());
+
+                cell = row.createCell(1, CellType.STRING);
+                cell.setCellValue(dsTKBMH.get(i).getTen_mon_hoc());
+
+                cell = row.createCell(2, CellType.STRING);
+                cell.setCellValue(dsTKBMH.get(i).getMin_sv());
+
+                cell = row.createCell(3, CellType.STRING);
+                cell.setCellValue(dsTKBMH.get(i).getMax_sv());
+
+                cell = row.createCell(0, CellType.STRING);
+                cell.setCellValue(dsTKBMH.get(i).getTime_start());
+
+                cell = row.createCell(1, CellType.STRING);
+                cell.setCellValue(dsTKBMH.get(i).getSo_phong());
+
+                cell = row.createCell(2, CellType.STRING);
+                cell.setCellValue(dsTKBMH.get(i).getTen_giao_vien());
+
+                cell = row.createCell(3, CellType.STRING);
+                cell.setCellValue(dsTKBMH.get(i).getSo_tuan_hoc());
+            }
+
+            File f = new File("./DSTKB.xlsx");
+            try {
+                FileOutputStream fis = new FileOutputStream(f);
+                wordkbook.write(fis);
+                fis.close();
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+
+            JOptionPane.showMessageDialog(this, "Xuat file thanh cong");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Loi mo file");
+        }
+    }//GEN-LAST:event_btnExportActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
@@ -312,8 +416,8 @@ public class ScheduleScreen extends javax.swing.JFrame {
                 services.Services.post(sql);
                 fetchData();
             } catch (Exception ex) {
-                 JOptionPane.showMessageDialog(this, "Lớp này đã có sinh viên không thể xóa !",
-                    "Thông báo", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Lớp này đã có sinh viên không thể xóa !",
+                        "Thông báo", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Yêu cầu chọn môn học để xóa !",
@@ -376,7 +480,7 @@ public class ScheduleScreen extends javax.swing.JFrame {
             txtSoPhong.setText("");
             txtSoTuan.setText("");
         } catch (Exception e) {
-           JOptionPane.showMessageDialog(this, "Môn học đã được tạo, hãy chọn môn khác",
+            JOptionPane.showMessageDialog(this, "Môn học đã được tạo, hãy chọn môn khác",
                     "Thông báo", JOptionPane.ERROR_MESSAGE);
         }
     }// GEN-LAST:event_btnAddItemActionPerformed
@@ -445,7 +549,7 @@ public class ScheduleScreen extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 ScheduleScreen scheduleScreen = new ScheduleScreen();
-                scheduleScreen = (ScheduleScreen)ProtectScreen.protectScreen(scheduleScreen);
+                scheduleScreen = (ScheduleScreen) ProtectScreen.protectScreen(scheduleScreen);
                 scheduleScreen = (ScheduleScreen) CenterScreen.centerWindow(scheduleScreen);
                 scheduleScreen.setTitle("Tạo thời khóa biểu cho môn học");
                 scheduleScreen.setVisible(true);
@@ -457,6 +561,7 @@ public class ScheduleScreen extends javax.swing.JFrame {
     private javax.swing.JButton btnAddItem;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDeleteItem;
+    private javax.swing.JButton btnExport;
     private javax.swing.JComboBox<String> cbGiaoVien;
     private javax.swing.JComboBox<String> cbMonHoc;
     private javax.swing.JLabel jLabel1;

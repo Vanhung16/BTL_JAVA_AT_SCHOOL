@@ -71,7 +71,7 @@ public class QLSVScreen extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        btnAddItem = new javax.swing.JButton();
         cbKhoa = new javax.swing.JComboBox<>();
         txtSDT = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -145,10 +145,10 @@ public class QLSVScreen extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel7.setText("Mật khẩu");
 
-        jButton2.setText("Thêm");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnAddItem.setText("Thêm");
+        btnAddItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnAddItemActionPerformed(evt);
             }
         });
 
@@ -183,19 +183,16 @@ public class QLSVScreen extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton2)
+                            .addComponent(btnAddItem)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(lbName)
                                         .addComponent(jLabel3))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(txtCode, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel7)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -252,7 +249,7 @@ public class QLSVScreen extends javax.swing.JFrame {
                     .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btnAddItem)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
@@ -297,7 +294,7 @@ public class QLSVScreen extends javax.swing.JFrame {
                     + " `diachi` FROM `sinh_vien`,`khoa` WHERE sinh_vien.id_khoa = khoa.id AND sinh_vien.id = " + choise;
             ResultSet rs = services.Services.get(sql);
             rs.next();
-            
+
             SinhVien sinhVien = new SinhVien();
             sinhVien.setCodeSV(rs.getString(1));
             sinhVien.setHoTen(rs.getString(2));
@@ -305,15 +302,14 @@ public class QLSVScreen extends javax.swing.JFrame {
             sinhVien.setTenKhoa(rs.getString(5));
             sinhVien.setSdt(rs.getString(6));
             sinhVien.setDiachi(rs.getString(7));
-            
+
             this.dispose();
             InforSV_Screen inforSV_Screen = new InforSV_Screen(sinhVien);
 //            inforSV_Screen = (InforSV_Screen) ProtectScreen.protectScreen(inforSV_Screen);
             inforSV_Screen = (InforSV_Screen) CenterScreen.centerWindow(inforSV_Screen);
             inforSV_Screen.setTitle("Chi tiết sinh viên");
             inforSV_Screen.setVisible(true);
-            
-           
+
         } catch (Exception ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(this, "Lỗi",
@@ -351,7 +347,7 @@ public class QLSVScreen extends javax.swing.JFrame {
             Logger.getLogger(QLSVScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
         // TODO add your handling code here:
         String code = txtCode.getText();
         String name = txtName.getText();
@@ -360,7 +356,7 @@ public class QLSVScreen extends javax.swing.JFrame {
         String ten_khoa = cbKhoa.getSelectedItem().toString();
         String sdt = txtSDT.getText();
         String diachi = txtDiaChi.getText();
-        
+
         if (code.equals("") || name.equals("") || nien_khoa.equals("") || ten_khoa.equals("") || sdt.equals("") || diachi.equals("")) {
             JOptionPane.showMessageDialog(this, "Yêu cầu nhập đủ tất cả các trường !",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -385,7 +381,7 @@ public class QLSVScreen extends javax.swing.JFrame {
             String sql = "INSERT INTO `sinh_vien`(`code`, `name`, `nien_khoa`, `password`, `id_khoa`, `SDT`, `diachi`)"
                     + " VALUES ('" + code + "','" + name + "','" + nien_khoa + "','" + password + "','" + id_khoa + "', '" + sdt + "','" + diachi + "')";
             services.Services.post(sql);
-            System.out.println("sql: "+sql);
+            System.out.println("sql: " + sql);
             fetchData();
             txtName.setText("");
             txtCode.setText("");
@@ -400,7 +396,7 @@ public class QLSVScreen extends javax.swing.JFrame {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnAddItemActionPerformed
 
     private void cbKhoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbKhoaActionPerformed
         // TODO add your handling code here:
@@ -459,7 +455,7 @@ public class QLSVScreen extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 QLSVScreen qlsvScreen = new QLSVScreen();
-//                qlsvScreen = (QLSVScreen) ProtectScreen.protectScreen(qlsvScreen);
+                qlsvScreen = (QLSVScreen) ProtectScreen.protectScreen(qlsvScreen);
                 qlsvScreen = (QLSVScreen) CenterScreen.centerWindow(qlsvScreen);
                 qlsvScreen.setVisible(true);
                 qlsvScreen.setTitle("Quản lý sinh viên");
@@ -468,11 +464,11 @@ public class QLSVScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddItem;
     private javax.swing.JButton btnBackHomeAdmin;
     private javax.swing.JButton btnDeleteItem;
     private javax.swing.JComboBox<String> cbKhoa;
     private javax.swing.JButton clickCTSV;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
