@@ -87,6 +87,7 @@ public class QLGVScreen extends javax.swing.JFrame {
         jLabel1.setText("Danh sách giáo viên");
 
         btnBackHome.setText("Quay lại");
+        btnBackHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBackHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackHomeActionPerformed(evt);
@@ -120,20 +121,25 @@ public class QLGVScreen extends javax.swing.JFrame {
         jLabel5.setText("Điện thoại");
 
         btnAdd.setText("Thêm");
+        btnAdd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
             }
         });
 
+        btnDelete.setBackground(java.awt.Color.red);
+        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("Xóa");
+        btnDelete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
 
-        btnInFile.setText("In");
+        btnInFile.setText("Xuất file excel");
+        btnInFile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInFileActionPerformed(evt);
@@ -155,8 +161,8 @@ public class QLGVScreen extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnDelete)
-                                .addGap(233, 233, 233)
-                                .addComponent(btnInFile, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(207, 207, 207)
+                                .addComponent(btnInFile)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnBackHome))
                             .addComponent(jLabel2)
@@ -322,7 +328,7 @@ public class QLGVScreen extends javax.swing.JFrame {
                 cell.setCellValue(dsGiaoVien.get(i).getPhone());
             }
 
-            File f = new File("C:\\Users\\Admin\\Desktop\\btl_java\\BTL_JAVA_2022_LASTEST_VERSION\\DSGV.xlsx");
+            File f = new File("./DSGV.xlsx");
             try {
                 FileOutputStream fis = new FileOutputStream(f);
                 wordkbook.write(fis);
@@ -334,7 +340,7 @@ public class QLGVScreen extends javax.swing.JFrame {
                 ex.printStackTrace();
             }
 
-            JOptionPane.showMessageDialog(this, "in thanh cong C:\\Users\\Admin\\Desktop\\btl_java\\BTL_JAVA_2022_LASTEST_VERSION\\DSGV.xlsx");
+            JOptionPane.showMessageDialog(this, "Xuat file thanh cong");
 
         } catch (Exception ex) {
             ex.printStackTrace();
