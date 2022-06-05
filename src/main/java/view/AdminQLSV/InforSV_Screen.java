@@ -5,9 +5,6 @@
  */
 package view.AdminQLSV;
 
-import models.SinhVien;
-import utilis.CenterScreen;
-
 /**
  *
  * @author Doan Cuong
@@ -20,27 +17,7 @@ public class InforSV_Screen extends javax.swing.JFrame {
     public InforSV_Screen() {
         initComponents();
     }
-    
-    public InforSV_Screen(SinhVien sinhVien){
-        
-        initComponents();
-        
-        txtMaSinhVien.setEditable(false);
-        txtHoTen.setEditable(false);
-        txtkhoa.setEditable(false);
-        txtKhoa.setEditable(false);
-        txtSoDienThoai.setEditable(false);
-        txtQueQuan.setEditable(false);
-        
-        txtMaSinhVien.setText(sinhVien.getCodeSV());
-        txtHoTen.setText(sinhVien.getHoTen());
-        txtkhoa.setText(sinhVien.getTenKhoa());
-        txtKhoa.setText(sinhVien.getNien_Khoa());
-        txtSoDienThoai.setText(sinhVien.getSdt());
-        txtQueQuan.setText(sinhVien.getDiachi());
-        
-        
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,13 +33,14 @@ public class InforSV_Screen extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jlable = new javax.swing.JLabel();
-        txtQueQuan = new javax.swing.JTextField();
-        txtSoDienThoai = new javax.swing.JTextField();
-        txtKhoa = new javax.swing.JTextField();
-        txtkhoa = new javax.swing.JTextField();
-        txtHoTen = new javax.swing.JTextField();
-        txtMaSinhVien = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         CloseCTSV = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -84,90 +62,96 @@ public class InforSV_Screen extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel2.setText("Họ tên");
 
-        jlable.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jlable.setText("Khoa");
-
-        txtQueQuan.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtQueQuan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtQueQuanActionPerformed(evt);
-            }
-        });
-
-        txtSoDienThoai.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-
-        txtKhoa.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-
-        txtkhoa.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-
-        txtHoTen.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-
-        txtMaSinhVien.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        txtMaSinhVien.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txtMaSinhVien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaSinhVienActionPerformed(evt);
-            }
-        });
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        jLabel3.setText("Lớp");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(57, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jLabel5)
                     .addComponent(jLabel4)
-                    .addComponent(jlable)
+                    .addComponent(jLabel3)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtSoDienThoai)
-                            .addComponent(txtkhoa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                            .addComponent(txtKhoa, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtQueQuan, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtHoTen, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtMaSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(66, 66, 66))
+                .addGap(51, 51, 51))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(txtMaSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtHoTen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addComponent(jLabel1)
                 .addGap(42, 42, 42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jlable)
-                    .addComponent(txtkhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
-                    .addComponent(txtKhoa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(txtSoDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel2)
+                .addGap(48, 48, 48)
+                .addComponent(jLabel3)
+                .addGap(43, 43, 43)
+                .addComponent(jLabel6)
+                .addGap(50, 50, 50)
+                .addComponent(jLabel4)
+                .addGap(45, 45, 45)
+                .addComponent(jLabel5)
+                .addGap(51, 51, 51))
+        );
+
+        jTextField3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+
+        jTextField4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+
+        jTextField5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+
+        jTextField6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+
+        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField1)
+                    .addComponent(jTextField2)
+                    .addComponent(jTextField3)
+                    .addComponent(jTextField6)
+                    .addComponent(jTextField4)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(txtQueQuan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52))
         );
 
         CloseCTSV.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -183,9 +167,9 @@ public class InforSV_Screen extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(96, Short.MAX_VALUE)
+                .addContainerGap(55, Short.MAX_VALUE)
                 .addComponent(CloseCTSV, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(51, 51, 51))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,24 +189,31 @@ public class InforSV_Screen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(327, 327, 327)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(209, 209, 209)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(118, 118, 118)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(366, 366, 366)
-                        .addComponent(jLabel7))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(226, 226, 226)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(262, Short.MAX_VALUE))
+                        .addComponent(jLabel7)))
+                .addContainerGap(315, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
+                .addContainerGap(75, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62))
         );
@@ -230,18 +221,18 @@ public class InforSV_Screen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtMaSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaSinhVienActionPerformed
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaSinhVienActionPerformed
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void CloseCTSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseCTSVActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_CloseCTSVActionPerformed
 
-    private void txtQueQuanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQueQuanActionPerformed
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtQueQuanActionPerformed
+    }//GEN-LAST:event_jTextField5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,11 +264,8 @@ public class InforSV_Screen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                InforSV_Screen inforSV_Screen = new InforSV_Screen();
-                inforSV_Screen = (InforSV_Screen) CenterScreen.centerWindow(inforSV_Screen);
-                inforSV_Screen.setVisible(true);
-                inforSV_Screen.setTitle("Chi tiết sinh viên");
-           }
+                new InforSV_Screen().setVisible(true);
+            }
         });
     }
 
@@ -285,18 +273,19 @@ public class InforSV_Screen extends javax.swing.JFrame {
     private javax.swing.JButton CloseCTSV;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel jlable;
-    private javax.swing.JTextField txtHoTen;
-    private javax.swing.JTextField txtKhoa;
-    private javax.swing.JTextField txtMaSinhVien;
-    private javax.swing.JTextField txtQueQuan;
-    private javax.swing.JTextField txtSoDienThoai;
-    private javax.swing.JTextField txtkhoa;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }

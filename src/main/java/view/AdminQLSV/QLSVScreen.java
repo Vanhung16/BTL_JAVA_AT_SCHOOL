@@ -95,11 +95,6 @@ public class QLSVScreen extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tableSinhVien.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableSinhVienMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(tableSinhVien);
 
         btnDeleteItem.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -260,43 +255,8 @@ public class QLSVScreen extends javax.swing.JFrame {
 
     private void clickCTSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickCTSVActionPerformed
         // TODO add your handling code here:
-           int row = tableSinhVien.getSelectedRow();
-        // lấy id của sinh viên cần xem
-        int choise = -1;
-        choise = (int) tableSinhVien.getModel().getValueAt(row, 0);
-
-        if (choise == -1) {
-            JOptionPane.showMessageDialog(this, "Yêu cầu chọn sinh viên cần xem !",
-                    "ERROR", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        try {
-            String sql = "SELECT sinh_vien.code, sinh_vien.name, sinh_vien.nien_khoa, khoa.name as 'tenKhoa', sinh_vien.SDT, sinh_vien.diachi"
-                    + "FROM sinh_vien INNER JOIN khoa ON sinh_vien.id_khoa = khoa.id "
-                    + "WHERE sinh_vien.id = " + choise;
-            ResultSet rs = services.Services.get(sql);
-            rs.next();
-            
-            SinhVien sinhVien = new SinhVien();
-            sinhVien.setId(rs.getInt(1));
-            sinhVien.setCodeSV(rs.getString(2));
-            sinhVien.setHoTen(rs.getString(3));
-            sinhVien.setNien_Khoa(rs.getString(4));
-            sinhVien.setTenKhoa(rs.getString(5));
-            sinhVien.setSdt(rs.getString(6));
-            sinhVien.setDiachi(rs.getString(7));
-            
-            InforSV_Screen inforSV_Screen = new InforSV_Screen(sinhVien);
-            inforSV_Screen.setVisible(true);
-            
-           
-        } catch (Exception ex) {
-            System.out.println(ex);
-            JOptionPane.showMessageDialog(this, "Lỗi",
-                    "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-        
+        InforSV_Screen inforSV_Screen = new InforSV_Screen();
+        inforSV_Screen.setVisible(true);
     }//GEN-LAST:event_clickCTSVActionPerformed
 
     private void btnBackHomeAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackHomeAdminActionPerformed
@@ -383,10 +343,10 @@ public class QLSVScreen extends javax.swing.JFrame {
             // TODO add your handling code here:
             int row = tableSinhVien.getSelectedRow();
             // lấy id của khoa cần xóa
-            int choise;
-            choise = (int) tableSinhVien.getModel().getValueAt(row, 0);
+            int idDelete;
+            idDelete = (int) tableSinhVien.getModel().getValueAt(row, 0);
             try {
-                String sql = "DELETE FROM `sinh_vien` WHERE id = " + choise;
+                String sql = "DELETE FROM `sinh_vien` WHERE id = " + idDelete;
                 services.Services.post(sql);
                 fetchData();
             } catch (Exception ex) {
@@ -399,10 +359,6 @@ public class QLSVScreen extends javax.swing.JFrame {
                     "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnDeleteItemActionPerformed
-    //Su kien kich 1 dong
-    private void tableSinhVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableSinhVienMouseClicked
-    
-    }//GEN-LAST:event_tableSinhVienMouseClicked
 
     /**
      * @param args the command line arguments
