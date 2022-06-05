@@ -312,7 +312,8 @@ public class ScheduleScreen extends javax.swing.JFrame {
                 services.Services.post(sql);
                 fetchData();
             } catch (Exception ex) {
-                System.out.println(ex);
+                 JOptionPane.showMessageDialog(this, "Lớp này đã có sinh viên không thể xóa !",
+                    "Thông báo", JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Yêu cầu chọn môn học để xóa !",
