@@ -19,6 +19,7 @@ import models.Khoa;
 import models.SinhVien;
 import utilis.BackHome;
 import utilis.CenterScreen;
+import utilis.ProtectScreen;
 import view.AdminQLMH.QLMHScreen;
 
 /**
@@ -255,7 +256,9 @@ public class QLSVScreen extends javax.swing.JFrame {
 
     private void clickCTSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clickCTSVActionPerformed
         // TODO add your handling code here:
+        this.dispose();
         InforSV_Screen inforSV_Screen = new InforSV_Screen();
+        inforSV_Screen = (InforSV_Screen)CenterScreen.centerWindow(inforSV_Screen);
         inforSV_Screen.setVisible(true);
     }//GEN-LAST:event_clickCTSVActionPerformed
 
@@ -391,6 +394,7 @@ public class QLSVScreen extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 QLSVScreen qlsvScreen = new QLSVScreen();
+                qlsvScreen = (QLSVScreen) ProtectScreen.protectScreen(qlsvScreen);
                 qlsvScreen = (QLSVScreen) CenterScreen.centerWindow(qlsvScreen);
                 qlsvScreen.setVisible(true);
                 qlsvScreen.setTitle("Quản lý sinh viên");
