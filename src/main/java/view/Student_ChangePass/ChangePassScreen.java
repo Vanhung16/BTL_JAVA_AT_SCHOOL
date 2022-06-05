@@ -5,6 +5,19 @@
  */
 package view.Student_ChangePass;
 
+import com.mycompany.quanlydangkymonhoc.connectDB.connectDataBase;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import utilis.BackHome;
+import utilis.CenterScreen;
+import utilis.Global;
+import utilis.ProtectScreen;
+import view.Login.Login;
+
 /**
  *
  * @author Doan Cuong
@@ -14,8 +27,28 @@ public class ChangePassScreen extends javax.swing.JFrame {
     /**
      * Creates new form ChangePassScreen
      */
+    String currentpass;
+
     public ChangePassScreen() {
         initComponents();
+        getPassowrd();
+    }
+
+    public void getPassowrd() {
+        String sql = "SELECT password FROM `sinh_vien` WHERE id = " + Global.idLogin;
+        ResultSet rs = services.Services.get(sql);
+        try {
+            while (rs.next()) {
+                currentpass = rs.getString("password");
+                System.out.println("mat khau " + rs.getString("password"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ChangePassScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
+//        System.out.println("Mat khau hien tai "+ currentpass );
+        System.out.println("id sinh vien: " + Global.idLogin);
+        System.out.println("mat khau sinh vien: " + currentpass);
+        System.out.println("sql: " + sql);
     }
 
     /**
@@ -31,13 +64,18 @@ public class ChangePassScreen extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jPasswordField2 = new javax.swing.JPasswordField();
-        jPasswordField3 = new javax.swing.JPasswordField();
+        txtOldPass = new javax.swing.JPasswordField();
+        txtNewPass = new javax.swing.JPasswordField();
+        txtreNewPass = new javax.swing.JPasswordField();
         AccepChangePass = new javax.swing.JButton();
-        btnCloseChangePass = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("Mật khẩu cũ:");
@@ -48,33 +86,35 @@ public class ChangePassScreen extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel3.setText("Nhập lại mật khẩu mới:");
 
-        jPasswordField1.setText("jPasswordField1");
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        txtOldPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                txtOldPassActionPerformed(evt);
             }
         });
 
-        jPasswordField2.setText("jPasswordField1");
-        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
+        txtNewPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField2ActionPerformed(evt);
+                txtNewPassActionPerformed(evt);
             }
         });
 
-        jPasswordField3.setText("jPasswordField1");
-        jPasswordField3.addActionListener(new java.awt.event.ActionListener() {
+        txtreNewPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField3ActionPerformed(evt);
+                txtreNewPassActionPerformed(evt);
             }
         });
 
         AccepChangePass.setText("Thay đổi");
-
-        btnCloseChangePass.setText("Đóng");
-        btnCloseChangePass.addActionListener(new java.awt.event.ActionListener() {
+        AccepChangePass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCloseChangePassActionPerformed(evt);
+                AccepChangePassActionPerformed(evt);
+            }
+        });
+
+        btnBack.setText("Đóng");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -88,7 +128,7 @@ public class ChangePassScreen extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(AccepChangePass, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCloseChangePass, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -96,10 +136,10 @@ public class ChangePassScreen extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(62, 62, 62)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPasswordField3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(149, Short.MAX_VALUE))
+                            .addComponent(txtreNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtOldPass, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(354, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,58 +147,101 @@ public class ChangePassScreen extends javax.swing.JFrame {
                 .addGap(101, 101, 101)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtOldPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(66, 66, 66)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(55, 55, 55)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jPasswordField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtreNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(96, 96, 96)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AccepChangePass)
-                    .addComponent(btnCloseChangePass))
-                .addContainerGap(114, Short.MAX_VALUE))
+                    .addComponent(btnBack))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(126, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(101, 101, 101))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void txtOldPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOldPassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_txtOldPassActionPerformed
 
-    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
+    private void txtNewPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNewPassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField2ActionPerformed
+    }//GEN-LAST:event_txtNewPassActionPerformed
 
-    private void jPasswordField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField3ActionPerformed
+    private void txtreNewPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtreNewPassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField3ActionPerformed
+    }//GEN-LAST:event_txtreNewPassActionPerformed
 
-    private void btnCloseChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseChangePassActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_btnCloseChangePassActionPerformed
+//        BackHome
+        BackHome.client(this);
+
+
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void AccepChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccepChangePassActionPerformed
+        // TODO add your handling code here:
+        String oldPass = txtOldPass.getText();
+        String newPass = txtNewPass.getText();
+        String reNewPass = txtreNewPass.getText();
+
+
+        if (oldPass.equals("") || newPass.equals("") || reNewPass.equals("")) {
+            JOptionPane.showMessageDialog(null, "Các trường không được để trống", "Thông báo", 2);
+        }
+        if (!oldPass.equals(currentpass)) {
+            JOptionPane.showMessageDialog(null, "Mật khẩu hiện tại sai", "Thông báo", 2);
+        }else{
+            if (!newPass.equals(reNewPass)) {
+                JOptionPane.showMessageDialog(null, "Nhập lại mật khẩu mới không chính xác", "Thông báo", 2);
+            } else {
+                String sql = " UPDATE sinh_vien SET `password`= '" + newPass + "' WHERE id = " + Global.idLogin;
+
+                services.Services.post(sql);
+                Global.idLogin = 0;
+                this.dispose();
+                Login loginScreen = new Login();
+                loginScreen = (Login) CenterScreen.centerWindow(loginScreen);
+                loginScreen.show();
+            }
+        }
+    }//GEN-LAST:event_AccepChangePassActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+//        idSinhVien = Global.idLogin;
+//        ResultSet rs = null;
+//        try {
+//            String sql = "SELECT password FROM `sinh_vien` WHERE id = " + idSinhVien;
+//
+//            rs = services.Services.get(sql);
+//            currentpass = rs.getString("password");
+//        System.out.println(currentpass);
+//
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+
+
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -190,20 +273,22 @@ public class ChangePassScreen extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ChangePassScreen().setVisible(true);
+                ChangePassScreen changePassScreen = new ChangePassScreen();
+                changePassScreen = (ChangePassScreen) ProtectScreen.protectScreen(changePassScreen);
+                changePassScreen.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AccepChangePass;
-    private javax.swing.JButton btnCloseChangePass;
+    private javax.swing.JButton btnBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JPasswordField jPasswordField3;
+    private javax.swing.JPasswordField txtNewPass;
+    private javax.swing.JPasswordField txtOldPass;
+    private javax.swing.JPasswordField txtreNewPass;
     // End of variables declaration//GEN-END:variables
 }

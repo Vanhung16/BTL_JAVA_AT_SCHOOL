@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import models.Khoa;
 import models.MonHoc;
-import utilis.BackHomeAdmin;
+import utilis.BackHome;
 import utilis.CenterScreen;
 import utilis.Global;
 import utilis.ProtectScreen;
@@ -176,7 +176,7 @@ public class KhoaScreen extends javax.swing.JFrame {
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCloseActionPerformed
         // TODO add your handling code here:
-        BackHomeAdmin.execute(this);
+        BackHome.admin(this);
     }// GEN-LAST:event_btnCloseActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {// GEN-FIRST:event_formWindowOpened
