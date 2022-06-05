@@ -10,12 +10,14 @@ package models;
  * @author Doan Cuong
  */
 public class SinhVien {
+    private int id;
     private String codeSV;
     private String hoTen;
     private String nien_Khoa;
     private String tenKhoa;
 
-    public SinhVien(String codeSV, String hoTen, String nien_Khoa, String tenKhoa) {
+    public SinhVien(int id, String codeSV, String hoTen, String nien_Khoa, String tenKhoa) {
+        this.id = id;
         this.codeSV = codeSV;
         this.hoTen = hoTen;
         this.nien_Khoa = nien_Khoa;
@@ -24,6 +26,15 @@ public class SinhVien {
 
     public SinhVien() {
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
 
     public String getCodeSV() {
         return codeSV;

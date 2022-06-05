@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 04, 2022 at 04:18 PM
+-- Generation Time: Jun 05, 2022 at 03:59 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.13
 
@@ -62,7 +62,8 @@ CREATE TABLE `giao_vien` (
 INSERT INTO `giao_vien` (`id`, `name`, `address`, `phone`) VALUES
 (1, 'Nguyễn Văn Hùng', 'Hà Nội', '033333333'),
 (2, 'Đoàn Quốc Cường', 'Thái Bình', '033333222'),
-(3, 'Nguyễn Xuân Hoàng', 'Bắc Giang', '033222333');
+(3, 'Nguyễn Xuân Hoàng', 'Bắc Giang', '033222333'),
+(4, 'Nguyễn Mạnh Hiếu', 'Hà Nội', '');
 
 -- --------------------------------------------------------
 
@@ -81,11 +82,11 @@ CREATE TABLE `khoa` (
 
 INSERT INTO `khoa` (`id`, `name`) VALUES
 (1, 'CÔNG NGHỆ THÔNG TIN'),
-(2, 'QUẢN TRỊ KINH DOANH'),
 (3, 'DU LICH'),
 (4, 'ĐIỆN TỬ VIỄN THÔNG'),
-(25, 'Điện'),
-(27, 'Khoa học máy tính');
+(27, 'Khoa học máy tính'),
+(32, 'CƠ KHÍ'),
+(34, 'NGÔN NGỮ ANH');
 
 -- --------------------------------------------------------
 
@@ -105,7 +106,9 @@ CREATE TABLE `mon_hoc` (
 --
 
 INSERT INTO `mon_hoc` (`id`, `name`, `so_tin_chi`, `id_nhom`) VALUES
-(1, 'Cơ sở dữ liệu', 3, 1);
+(1, 'Cơ sở dữ liệu', 3, 1),
+(7, 'Lập trình C++', 30, 2),
+(8, 'Lập trình hướng đối tượng', 30, 2);
 
 -- --------------------------------------------------------
 
@@ -151,7 +154,9 @@ CREATE TABLE `sinh_vien` (
 
 INSERT INTO `sinh_vien` (`id`, `code`, `name`, `nien_khoa`, `password`, `id_khoa`) VALUES
 (3, '2019605000', 'NGUYỄN XUÂN HOÀNG', 'K14', '1', 1),
-(4, '2019605562', 'NGUYỄN VĂN HÙNG', 'K14', '1', 1);
+(4, '2019605562', 'NGUYỄN VĂN HÙNG', 'K14', '1', 1),
+(6, '2019605001', 'NGUYỄN MẠNH HIẾU', 'K14', '1', 27),
+(9, '2019605002', 'NGUYỄN VĂN A', 'K14', '1', 4);
 
 -- --------------------------------------------------------
 
@@ -225,6 +230,7 @@ ALTER TABLE `nhom_mon`
 --
 ALTER TABLE `sinh_vien`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `code` (`code`),
   ADD KEY `id_khoa` (`id_khoa`);
 
 --
@@ -257,19 +263,19 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `giao_vien`
 --
 ALTER TABLE `giao_vien`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `khoa`
 --
 ALTER TABLE `khoa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `mon_hoc`
 --
 ALTER TABLE `mon_hoc`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `nhom_mon`
@@ -281,7 +287,7 @@ ALTER TABLE `nhom_mon`
 -- AUTO_INCREMENT for table `sinh_vien`
 --
 ALTER TABLE `sinh_vien`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tkb_mh`
