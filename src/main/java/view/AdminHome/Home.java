@@ -22,13 +22,14 @@ import view.AdminQLGV.QLGVScreen;
 import view.AdminQLMH.QLMHScreen;
 import view.AdminQLSV.QLSVScreen;
 import view.Login.Login;
+import view.Schedule.ScheduleScreen;
 
 /**
  *
  * @author XuanHoang
  */
 public class Home extends javax.swing.JFrame {
-
+    
     ArrayList<NhomMon> dsNhomMon = new ArrayList<NhomMon>();
     int dongchon = -1;
 
@@ -39,17 +40,17 @@ public class Home extends javax.swing.JFrame {
         initComponents();
         LoadHomeScreen();
     }
-
+    
     public void LoadHomeScreen() {
         PreparedStatement st;
         ResultSet rs;
-
+        
         String sql = "SELECT * FROM admin WHERE id = ?";
         try {
             st = connectDataBase.getConnection().prepareStatement(sql);
             st.setString(1, Global.idLogin + "");
             rs = st.executeQuery();
-
+            
             if (rs.next()) {
                 lbNameAdminLogin.setText(rs.getString("name"));
                 lbEmailAdminLogin.setText(rs.getString("email"));
@@ -91,6 +92,7 @@ public class Home extends javax.swing.JFrame {
         btnQLKhoa = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         btnQLMH1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         btnClose = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         lbNameLogin = new javax.swing.JLabel();
@@ -98,6 +100,7 @@ public class Home extends javax.swing.JFrame {
         lbNameAdminLogin = new javax.swing.JLabel();
         lbNameLogin2 = new javax.swing.JLabel();
         lbEmailAdminLogin = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         jMenu1.setText("jMenu1");
 
@@ -198,6 +201,19 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 70, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 117, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -205,18 +221,24 @@ public class Home extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnQLMH1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnQLMH1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                     .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnQLKhoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnQLMH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGiaoVien, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                    .addComponent(btnGiaoVien, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnQLSV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(12, 12, 12))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(118, 118, 118)
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
                 .addComponent(btnQLSV, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnGiaoVien, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -258,6 +280,8 @@ public class Home extends javax.swing.JFrame {
         lbEmailAdminLogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lbEmailAdminLogin.setText("xxxx");
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/AdminHome/images/computer-icons-home-page-favicon-website-png-favpng-AERnWJireKVXw5iuftuANf4dA.jpg"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -275,7 +299,8 @@ public class Home extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(93, 93, 93)
+                                        .addComponent(jLabel1)
+                                        .addGap(43, 43, 43)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lbNameLogin2)
                                             .addComponent(lbNameLogin))
@@ -294,11 +319,14 @@ public class Home extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(95, 95, 95)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbNameAdminLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbNameLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(95, 95, 95)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbNameAdminLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbNameLogin2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbNameLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -318,6 +346,7 @@ public class Home extends javax.swing.JFrame {
         QLGVScreen gVScreen = new QLGVScreen();
         gVScreen = (QLGVScreen) CenterScreen.centerWindow(gVScreen);
         gVScreen.show();
+        gVScreen.setTitle("Quản lý giáo viên");
     }//GEN-LAST:event_btnGiaoVienActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -335,6 +364,7 @@ public class Home extends javax.swing.JFrame {
         QLSVScreen lSVScreen = new QLSVScreen();
         lSVScreen.setVisible(true);
         lSVScreen = (QLSVScreen) CenterScreen.centerWindow(lSVScreen);
+        lSVScreen.setTitle("Quản lý sinh viên");
     }//GEN-LAST:event_btnQLSVActionPerformed
 
     private void btnQLMHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLMHActionPerformed
@@ -342,6 +372,7 @@ public class Home extends javax.swing.JFrame {
         QLMHScreen qLMHScreen = new QLMHScreen();
         qLMHScreen.setVisible(true);
         qLMHScreen = (QLMHScreen) CenterScreen.centerWindow(qLMHScreen);
+        qLMHScreen.setTitle("Quản lý môn học");
     }//GEN-LAST:event_btnQLMHActionPerformed
 
     private void btnQLKhoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLKhoaActionPerformed
@@ -350,6 +381,7 @@ public class Home extends javax.swing.JFrame {
         KhoaScreen khoaScreen = new KhoaScreen();
         khoaScreen = (KhoaScreen) CenterScreen.centerWindow(khoaScreen);
         khoaScreen.show();
+        khoaScreen.setTitle("Quản lý khoa");
 
     }//GEN-LAST:event_btnQLKhoaActionPerformed
 
@@ -360,6 +392,11 @@ public class Home extends javax.swing.JFrame {
 
     private void btnQLMH1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLMH1ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        ScheduleScreen scheduleScreen = new ScheduleScreen();
+        scheduleScreen = (ScheduleScreen) CenterScreen.centerWindow(scheduleScreen);
+        scheduleScreen.show();
+        scheduleScreen.setTitle("Tạo TKB cho môn học");
     }//GEN-LAST:event_btnQLMH1ActionPerformed
 
     /**
@@ -393,7 +430,7 @@ public class Home extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Home homeScreen = new Home();
-//                homeScreen = (Home) ProtectScreen.protectScreen(homeScreen);
+                homeScreen = (Home) ProtectScreen.protectScreen(homeScreen);
                 homeScreen.setVisible(true);
                 homeScreen.setTitle("Trang chủ");
                 homeScreen.setPreferredSize(new Dimension(800, 600));
@@ -416,6 +453,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem3;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem4;
     private javax.swing.JFrame jFrame1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
@@ -428,6 +466,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JLabel lbEmailAdminLogin;

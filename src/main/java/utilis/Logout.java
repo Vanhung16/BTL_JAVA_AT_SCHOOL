@@ -19,5 +19,6 @@ public class Logout {
         Login loginScreen = new Login();
         loginScreen = (Login) CenterScreen.centerWindow(loginScreen);
         loginScreen.show();
+         loginScreen.setTitle("Đăng nhập hệ thống");
     }
 }

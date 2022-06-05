@@ -37,10 +37,8 @@ public class Services {
     }
 
     public static ResultSet get(String sql) {
-
         PreparedStatement st;
         ResultSet rs = null;
-
         try {
             st = connectDataBase.getConnection().prepareStatement(sql);
             rs = st.executeQuery();
@@ -56,7 +54,6 @@ public class Services {
             st = connectDataBase.getConnection().prepareStatement(sql);
             st.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println(ex);
         }
     }
 }

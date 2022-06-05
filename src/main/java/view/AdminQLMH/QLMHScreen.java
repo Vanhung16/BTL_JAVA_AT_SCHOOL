@@ -6,12 +6,8 @@
 package view.AdminQLMH;
 
 import TableView.TableMonHoc;
-import com.mycompany.quanlydangkymonhoc.connectDB.connectDataBase;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import models.MonHoc;
@@ -279,7 +275,7 @@ public class QLMHScreen extends javax.swing.JFrame {
         String ten_nhom = (String) cbNhomMon.getSelectedItem();
         int id_nhom = 0;
         for (NhomMon nhomMon : dsNhomMon) {
-            if(ten_nhom.equals(nhomMon.getName())) {
+            if (ten_nhom.equals(nhomMon.getName())) {
                 id_nhom = nhomMon.getId();
                 break;
             }
@@ -358,7 +354,7 @@ public class QLMHScreen extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 QLMHScreen qlmhScreen = new QLMHScreen();
-//                qlmhScreen = (QLMHScreen) ProtectScreen.protectScreen(qlmhScreen);
+                qlmhScreen = (QLMHScreen) ProtectScreen.protectScreen(qlmhScreen);
                 qlmhScreen.setVisible(true);
                 qlmhScreen = (QLMHScreen) CenterScreen.centerWindow(qlmhScreen);
             }

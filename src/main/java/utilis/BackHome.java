@@ -19,6 +19,7 @@ public class BackHome {
         Home homeScreen = new Home();
         homeScreen = (Home) CenterScreen.centerWindow(homeScreen);
         homeScreen.show();
+        homeScreen.setTitle("Trang chủ quản trị");
     }
     
     public static void client(Window frame){
@@ -26,5 +27,6 @@ public class BackHome {
         StudentScreen_Home home = new StudentScreen_Home();
         home = (StudentScreen_Home) CenterScreen.centerWindow(home);
         home.show();
+        home.setTitle("Trang chủ sinh viên");
     }
 }
